@@ -4,8 +4,8 @@
 
 class Prize
   attr_reader :treasures,:level
-  def initialize(treasures,level)
-    @treasures = treasures
-    @level = level
+  def initialize(treasur,lvel)
+    @treasures = treasur
+    @level = lvel
   end
 end
