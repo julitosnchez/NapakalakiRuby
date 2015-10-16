@@ -3,7 +3,7 @@
 # and open the template in the editor.
 
 class Prize
-  attr_reader :treasures,:level
+  attr_accesor :treasures,:level
   def initialize(treasur,lvel)
     @treasures = treasur
     @level = lvel
