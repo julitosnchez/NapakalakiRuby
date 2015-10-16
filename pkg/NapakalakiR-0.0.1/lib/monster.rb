@@ -2,10 +2,12 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
-class Prize
-  attr_reader :treasures,:level
-  def initialize(treasures,level)
-    @treasures = treasures
-    @level = level
+class Monster
+  attr_accessor :name,:combat_level,:prize,:bc
+  def initialize(name,level,bc,price)
+    @name = name
+    @combat_level = level
+    @prize = price
+    @bc = bc
   end
 end

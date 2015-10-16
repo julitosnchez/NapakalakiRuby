@@ -2,10 +2,5 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
-class Prize
-  attr_reader :treasures,:level
-  def initialize(treasures,level)
-    @treasures = treasures
-    @level = level
-  end
-end
+m = Prize.new(1,3)
+puts m.treasures
