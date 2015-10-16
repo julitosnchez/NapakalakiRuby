@@ -2,5 +2,6 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
-m = Prize.new(2,3)
+
+m = Prize.new(1,2)
 puts m.treasures
