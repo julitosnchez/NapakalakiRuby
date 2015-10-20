@@ -42,9 +42,11 @@ class BadConsequence
     m = BadConsequence.new
     m.text = a_text
   end
-  
-
-  
+  /*Metodo to_s/
+  def to_s()
+    "Descripcion carta: #{@tex}\n Nivel: #{@levels}\n Numero de tesoros visibles: #{@n_visible_treasures}\n Numero de tesoros escondidos: #{@n_hidden_treasures}\n
+     Tesoros visibles: #{@specific_visible_treasures}\n Tesoros escondidos: #{@specific_hidden_treasures}\n Implica muerte: #{@death}"
+  end
   /*Consultores/
   def text
     @text
