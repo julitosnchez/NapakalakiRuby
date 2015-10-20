@@ -5,3 +5,4 @@
 
 m = Prize.new(1,2)
 puts m.treasures
+mmmm
