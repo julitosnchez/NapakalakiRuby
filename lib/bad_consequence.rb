@@ -4,7 +4,7 @@
 
 class BadConsequence
   /*Declaración de arrays/
-  attr_accesor :text,:levels,:n_visible_treasures,:n_hidden_treasures,:death
+  attr_accessor :text,:levels,:n_visible_treasures,:n_hidden_treasures,:death
   @specific_hidden_treasures = Array.new
   @specific_visible_treasures = Array.new
   private_class_method :new
@@ -20,31 +20,20 @@ class BadConsequence
     @death = death
   end
   /*Constructor 1 programado/
-  def self.newLevelNumberOfTreasures(a_text,some_levels,some_visible_treasures,some_hidden_treasures)
-    m = BadConsequence.new
-    m.text = a_text
-    m.levels = some_levels
-    m.n_visible_treasures = some_visible_treasures
-    m.n_hidden_treasures = some_hidden_treasures
-    m
+  def self.new_level_number_of_treasures(a_text,some_levels,some_visible_treasures,some_hidden_treasures)
+    new(a_text,some_levels,some_visible_treasures,some_hidden_treasures,Array.new,Array.new,false)
   end
   /*Constructor 2 programado/
-  def self.newLevelSpecificTreasures(a_text,some_levels,some_specific_visible_treasures,some_specific_hidden_treasures)
-    m = BadConsequence.new
-    m.text = a_text
-    m.levels = some_levels
-    m.specific_visible_treasures = some_specific_visible_treasures
-    m.specific_hidden_treasures = some_specific_hidden_treasures
-    m
+  def self.new_level_specific_treasures(a_text,some_levels,some_specific_visible_treasures,some_specific_hidden_treasures)
+    new(a_text,some_levels,0,0,some_specific_visible_treasures,some_specific_hidden_treasures,false)
   end
   /*Constructor 3 programado/
-  def self.newDeath(a_text)
-    m = BadConsequence.new
-    m.text = a_text
+  def self.new_death(a_text)
+    new(a_text,0,0,0,Array.new,Array.new,true)
   end
   /*Metodo to_s/
   def to_s()
-    "Descripcion carta: #{@tex}\n Nivel: #{@levels}\n Numero de tesoros visibles: #{@n_visible_treasures}\n Numero de tesoros escondidos: #{@n_hidden_treasures}\n
+    "Descripcion carta: #{@text}\n Nivel: #{@levels}\n Numero de tesoros visibles: #{@n_visible_treasures}\n Numero de tesoros escondidos: #{@n_hidden_treasures}\n
      Tesoros visibles: #{@specific_visible_treasures}\n Tesoros escondidos: #{@specific_hidden_treasures}\n Implica muerte: #{@death}"
   end
   /*Consultores/
@@ -54,10 +43,10 @@ class BadConsequence
   def levels
     @levels
   end
-  def nVisibleTreasures
+  def n_visible_treasures
     @n_visible_treasures
   end
-  def nHiddenTreasures
+  def n_hidden_treasures
     @n_hidden_treasures
   end
   def death

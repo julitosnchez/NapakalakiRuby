@@ -10,8 +10,9 @@ class Monster
     @prize = price
     @bc = bc
   end
-  /*Método to_s       ¿¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿/
+  #Método to_s
   def to_s()
     "Nombre del monstruo: #{@name}\n Nivel de combate: #{@combat_level}\n
-     Buen rollo #{@prize.to_s()}\n Mal rollo: #{@bc}"
+     Buen rollo #{@prize}\n Mal rollo: #{@bc}"
   end
+end
