@@ -19,7 +19,7 @@ monsters << Monster.new('El rey de rosa',13,bad_consequence,prize)
 #ANGELES DE LA NOCHE IBICENCA
 prize = Prize.new(4,1) 
 bad_consequence = BadConsequence.new_level_specific_treasures('Te atrapan para llevarte de fiesta y te dejan caer en mitad del vuelo.Descarta 1 mano visible y 1 mano oculta',0,[TreasureKind::ONEHAND],[TreasureKind::ONEHAND])
-monsters << Monster.new('Ángeles de la noche ibicenca', 14,bad_consequence,prize)
+monsters << Monster.new('Ángeles de la noche ibicenca',14,bad_consequence,prize)
 
 #3 BYAKHEES DE BONANZA
 prize = Prize.new(2,1) 
@@ -105,3 +105,9 @@ monsters << Monster.new('El lenguas', 20, bad_consequence, prize)
 prize = Prize.new(1, 1)
 bad_consequence = BadConsequence.new_level_specific_treasures('Te faltan manos para tanta cabeza.Pierdes 3 niveles y tus tesoros visibles de las manos', 3, [TreasureKind::BOTHHANDS], [])
 monsters << Monster.new('Bicefalo ',20, bad_consquence, prize)
+
+
+#¿ERROR? 
+monsters.each do |elemento|
+  puts elemento.to_s()
+end
