@@ -28,9 +28,7 @@ monsters << Monster.new('3 Byakhees de bonanza', 8,bad_consequence,prize)
 
 #Chibithulhu
 prize = Prize.new(1,1) 
-bad_consequence = BadConsequence.new_level_specific_treasures('Embobados con el lindo
-primigenio te descartas de tu casco
-visible',0,[TreasureKind::HELMET],[])
+bad_consequence = BadConsequence.new_level_specific_treasures('Embobados con el lindo primigenio te descartas de tu casco visible',0,[TreasureKind::HELMET],[])
 monsters << Monster.new('Chibithulhu', 2,bad_consequence,prize)
 
 #EL SOPOR DE DUNWICH
@@ -46,64 +44,64 @@ monsters << Monster.new('El gorrón en el umbral', 10,bad_consequence,prize)
 #H.P. MUNCHCRAFT
 prize = Prize.new(2,1)
 bad_consequence = BadConsequence.new_level_specific_treasures('Pierdes la armadura visible', 0, [TreasureKind::ARMOR], [])
-monster << Monster.new('H.P. Munchcraft', 6,bad_consequence,prize)
+monsters << Monster.new('H.P. Munchcraft', 6,bad_consequence,prize)
 
 #BICHGOOTH
 prize = Prize.new(1,1)
 bad_consequence = BadConsequence.new_level_specific_treasures('Sientes bichos bajo la ropa. Descarta la armadura visible', 0, [TreasureKind::ARMOR], [])
-monster << Monster.new('Bichgooth',2,bad_consequence,prize)
+monsters << Monster.new('Bichgooth',2,bad_consequence,prize)
 
 #LA QUE REDACTA EN LAS TINIEBLAS
 prize = Prize.new(1, 1)
 bad_consequence = BadConsequence.new_level_specific_treasures('Toses los pulmones y pierdes 2 niveles', 2, [], [])
-monster << Monster.new('La que redacta en las tinieblas', 2, bad_consequence, prize)
+monsters << Monster.new('La que redacta en las tinieblas', 2, bad_consequence, prize)
 
 #LOS HONDOS
 prize = Prize.new(2, 1)
 bad_consequence = BadConsequence.new_death('Estos monstruos resultan bastanta superficieales y te aburren mortalmente.Estas muerto')
-monster << Monster.new('Los hondos', 8, bad_consequence, prize)
+monsters << Monster.new('Los hondos', 8, bad_consequence, prize)
 
 #SEMILLAS CTHULHU
 prize = Prize.new(2, 1)
 bad_consequence = BadConsequence.new_level_number_of_treasures('Pierdes 2 niveles y 2 tesoros ocultos', 2, 0, 2)
-monster << Monster.new('Semillas Cthulhu',4,bad_consequence, prize)
+monsters << Monster.new('Semillas Cthulhu',4,bad_consequence, prize)
 
 #DAMEARGO
 prize = Prize.new(2, 1)
 bad_consequence = BadConsequence.new_level_specific_treasures('Te intentas escaquear. Pierdes una mano visible',0,[TreasureKind::ONEHAND],[])
-monster << Monster.new('Dameargo', 1, bad_consequence, prize)
+monsters << Monster.new('Dameargo', 1, bad_consequence, prize)
 
 #POLLIPÓLIPO VOLANTE
 prize = Prize.new(1, 1)
 bad_consequence = BadConsequence.new_level_specific_treasures('Da mucho asquito. Pierdes 3 niveles',3,[],[])
-monster << Monster.new('Pollipólipo volante', 3, bad_consequence, prize)
+monsters << Monster.new('Pollipólipo volante', 3, bad_consequence, prize)
 
 #YSKHTIHYSSG-GOTH
 prize = Prize.new(3, 1)
 bad_consequence = BadConsequence.new_death('No le hace gracia que pronuncien mal su nombre.Estas muerto')
-monster << Monster.new('Yskhtihyssg-Goth', 12, bad_consequence, prize)
+monsters << Monster.new('Yskhtihyssg-Goth', 12, bad_consequence, prize)
 
 #FAMILIA FELIZ
 prize = Prize.new(4, 1)
 bad_consequence = BadConsequence.new_death('La familia te atrapa.Estas muerto')
-monster << Monster.new('Familia feliz', 1, bad_consequence, prize)
+monsters << Monster.new('Familia feliz', 1, bad_consequence, prize)
 
 #ROBOGGOTH
 prize = Prize.new(2, 1)
 bad_consequence = BadConsequence.new_level_specific_treasures('La quinta directiva primaria te obliga a perder 2 niveles y un tesoro 2 manos visible', 2, [TreasureKind::BOTHHANDS], [])
-monster << Monster.new('Roboggoth', 8, bad_consequence, prize)
+monsters << Monster.new('Roboggoth', 8, bad_consequence, prize)
 
 #El ESPIA
 prize = Prize.new(1, 1)
 bad_consequence = BadConsequence.new_level_specific_treasures('Te asusta en la noche. Pierdes un casco visible', 0, [TreasureKind::HELMET], [])
-monster << Monster.new('El espia', 5, bad_consequence, prize)
+monsters << Monster.new('El espia', 5, bad_consequence, prize)
 
 #EL LENGUAS
 prize = Prize.new(1, 1)
 bad_consequence = BadConsequence.new_level_number_of_treasures('Menudo susto te llevas. Pierdes 2 niveles y 5 tesoros visibles', 2, 5, 0)
-monster << Monster.new('El lenguas', 20, bad_consequence, prize)
+monsters << Monster.new('El lenguas', 20, bad_consequence, prize)
 
 #BICÉFALO
 prize = Prize.new(1, 1)
 bad_consequence = BadConsequence.new_level_specific_treasures('Te faltan manos para tanta cabeza.Pierdes 3 niveles y tus tesoros visibles de las manos', 3, [TreasureKind::BOTHHANDS], [])
-
+monsters << Monster.new('Bicefalo ',20, bad_consquence, prize)
