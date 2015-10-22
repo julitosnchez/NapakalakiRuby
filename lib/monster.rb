@@ -12,7 +12,6 @@ class Monster
   end
   #Método to_s
   def to_s()
-    "Nombre del monstruo: #{@name}\n Nivel de combate: #{@combat_level}\n
-     Buen rollo #{@prize}\n Mal rollo: #{@bc}"
+    "Nombre del monstruo: #{@name}\nNivel de combate: #{@combat_level}\n#{@prize}\n#{@bc}"
   end
 end

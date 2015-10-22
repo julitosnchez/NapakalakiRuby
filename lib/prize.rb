@@ -9,6 +9,6 @@ class Prize
     @level = level
   end
   def to_s()
-    "Tesoros ganados: #{@treasures} \n Niveles ganados: #{@levels}"
+    "Tesoros ganados: #{@treasures}\nNiveles ganados: #{@levels}"
   end
 end
