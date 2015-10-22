@@ -33,23 +33,15 @@ class BadConsequence
   end
   #Metodo to_s
   def to_s()
-    "Descripcion carta: #{@text}\nNivel: #{@levels}\nNumero de tesoros visibles: #{@n_visible_treasures}\nNumero de tesoros escondidos: #{@n_hidden_treasures}\nTesoros visibles: #{@specific_visible_treasures}\nTesoros escondidos: #{@specific_hidden_treasures}\nImplica muerte: #{@death}\n"
+    "Descripcion carta: #{@text}\nNiveles perdidos: #{@levels}\nNumero de tesoros visibles: #{@n_visible_treasures}\nNumero de tesoros escondidos: #{@n_hidden_treasures}\nTesoros visibles: #{@specific_visible_treasures}\nTesoros escondidos: #{@specific_hidden_treasures}\nImplica muerte: #{@death}\n\n"
   end
   #Consultores
-  def text
-    @text
+  def get_specific_hidden_treasures()
+    @specific_hidden_treasures
   end
-  def levels
-    @levels
-  end
-  def n_visible_treasures
-    @n_visible_treasures
-  end
-  def n_hidden_treasures
-    @n_hidden_treasures
-  end
-  def death
-    @death
+  
+  def get_specific_visible_treasures()
+    @specific_visible_treasures
   end
   
 end
