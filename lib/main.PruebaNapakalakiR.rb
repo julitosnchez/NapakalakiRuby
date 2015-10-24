@@ -107,25 +107,24 @@ prize = Prize.new(1, 1)
 bad_consequence = BadConsequence.new_level_specific_treasures('Te faltan manos para tanta cabeza.Pierdes 3 niveles y tus tesoros visibles de las manos', 3, [TreasureKind::BOTHHANDS], [])
 monsters << Monster.new('Bicefalo ',20, bad_consequence, prize)
 
-
 #Monstruos con un nivel de combate superior a 10
 monsters.each do |monstruo|
   if monstruo.combat_level > 10
-    puts monstruo.to_s()
+    puts monstruo
   end
 end
 
 #Monstruos que tengan un mal rollo que sólo implique pérdida de niveles
 monsters.each do |monstruo|
   if monstruo.bc.levels!=0 && monstruo.bc.n_visible_treasures==0 && monstruo.bc.n_hidden_treasures==0 && monstruo.bc.get_specific_hidden_treasures().empty? && monstruo.bc.get_specific_visible_treasures().empty?
-    puts monstruo.to_s()
+    puts monstruo
   end
 end
 
 #Monstruos con un buen rollo que implique una ganancia de niveles superior a 1
 monsters.each do |monstruo|
   if monstruo.prize.level > 1
-    puts monstruo.to_s()
+    puts monstruo
   end
 end
 
@@ -133,7 +132,7 @@ end
 #Monstruos que tengan un malo rollo que suponga pérdida de undeterminado tipo de tesoros visibles y/o ocultos
 monsters.each do |monstruo|
   if !monstruo.bc.get_specific_hidden_treasures().empty? || !monstruo.bc.get_specific_visible_treasures().empty?
-    puts monstruo.to_s()
+    puts monstruo
   end
 end
 
