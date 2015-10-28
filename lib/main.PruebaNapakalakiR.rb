@@ -128,4 +128,3 @@ monsters.each { |monstruo| if monstruo.prize.level > 1; puts monstruo end }
 monsters.each do |monstruo|
   puts monstruo if !monstruo.bc.get_specific_hidden_treasures().empty? || !monstruo.bc.get_specific_visible_treasures().empty?
 end
-
