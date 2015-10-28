@@ -3,7 +3,7 @@
 # and open the template in the editor.
 
 class Monster
-  attr_accessor :name,:combat_level,:prize,:bc
+  attr_accessor :name,:combat_level,:prize,:bc,:mi_alter_ego
   def initialize(name,level,bc,price)
     @name = name
     @combat_level = level
