@@ -3,15 +3,24 @@
 # and open the template in the editor.
 
 class Monster
-  attr_accessor :name,:combat_level,:prize,:bc
+  attr_accessor :name,:combat_level,:prize,:bad_consequence
   def initialize(name,level,bc,price)
     @name = name
     @combat_level = level
     @prize = price
-    @bc = bc
+    @bad_consequence = bc
   end
   #Método to_s
   def to_s()
     "Nombre del monstruo: #{@name}\nNivel de combate: #{@combat_level}\n#{@prize}\n#{@bc}"
   end
+  #Consultor
+  def get_levels_gained()
+    @prize.level
+  end
+  
+  def get_treasures_gained()
+    @prize.treasures
+  end
+  
 end

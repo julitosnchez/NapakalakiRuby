@@ -3,12 +3,14 @@
 # and open the template in the editor.
 
 class Prize
-  attr_accessor :treasures,:level
+  attr_reader :treasures,:level
   def initialize(treasures,level)
     @treasures = treasures
     @level = level
   end
+  
   def to_s()
     "Tesoros ganados: #{@treasures}\nNiveles ganados: #{@level}"
   end
+  
 end
