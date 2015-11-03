@@ -22,7 +22,7 @@ class BadConsequence
   end
   #Constructor 1 programado
   def self.new_level_number_of_treasures(a_text,some_levels,some_visible_treasures,some_hidden_treasures)
-    new(a_text,some_levels,some_visible_treasures,some_hidden_treasures,Array.new,Array.new,false)
+   new(a_text,some_levels,some_visible_treasures,some_hidden_treasures,Array.new,Array.new,false)
   end
   #Constructor 2 programado
   def self.new_level_specific_treasures(a_text,some_levels,some_specific_visible_treasures,some_specific_hidden_treasures)
