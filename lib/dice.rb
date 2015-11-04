@@ -2,8 +2,10 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
+include Singleton
+
 class Dice
-  @@instance
+  @@instance = Dice.instance
   
   private
   def initialize
@@ -12,7 +14,7 @@ class Dice
   
   public
   def get_instance()
-    
+    @@instance
   end
   
   def next_number()

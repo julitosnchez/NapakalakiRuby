@@ -1,13 +1,14 @@
 # To change this license header, choose License Headers in Project Properties.
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
+include Singleton
 
 class CardDealer
   @unused_monsters = Array.new
   @used_monsters = Array.new
   @used_treasures = Array.new
   @unused_treasures = Array.new
-  @@instance
+  @@instance = CardDealer.instance
   private #A partir de aquí, todo lo que viene acontinuación es privado
   def initialize
     

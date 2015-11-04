@@ -3,8 +3,8 @@
 # and open the template in the editor.
 
 class Player
-  MAX_LEVEL = 10
-  atr_reader :name,:level,:dead,:can_i_steal,:visible_treasures,:hidden_treasures
+  $MAX_LEVEL = 10
+  attr_reader :name,:level,:dead,:can_i_steal,:visible_treasures,:hidden_treasures
   @visible_treasures = Array.new
   @hidden_treasures = Array.new
   @pending_bad_consequence
