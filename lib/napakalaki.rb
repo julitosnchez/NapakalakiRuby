@@ -4,16 +4,11 @@
 include Singleton
 
 class Napakalaki
-  @@instance = Napakalaki.instance
   attr_reader :current_monster,:current_player
   @players = Array.new
   @dealer
   
   private
-  def initialize
-    
-  end
-  
   def init_players(names)
     
   end
@@ -31,10 +26,6 @@ class Napakalaki
   end
   
   public
-  def self.get_instance()
-    
-  end
-  
   def develop_combat()
     
   end

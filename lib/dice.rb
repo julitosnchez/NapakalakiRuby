@@ -5,18 +5,8 @@
 include Singleton
 
 class Dice
-  @@instance = Dice.instance
-  
-  private
-  def initialize
-    
-  end
   
   public
-  def get_instance()
-    @@instance
-  end
-  
   def next_number()
     
   end

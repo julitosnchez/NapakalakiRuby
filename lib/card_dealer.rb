@@ -8,12 +8,7 @@ class CardDealer
   @used_monsters = Array.new
   @used_treasures = Array.new
   @unused_treasures = Array.new
-  @@instance = CardDealer.instance
   private #A partir de aquí, todo lo que viene acontinuación es privado
-  def initialize
-    
-  end
-  
   def init_treasure_card_deck()
     
   end
@@ -31,10 +26,6 @@ class CardDealer
   end
   
   public #A partir de aquí, todo lo que viene acontinuación es público
-  def self.get_instance()
-    
-  end
-  
   def next_treasure()
     
   end
