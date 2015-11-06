@@ -34,13 +34,7 @@ prize = Prize.new(1,1)
 bad_consequence = BadConsequence.new_level_specific_treasures('Embobados con el lindo primigenio te descartas de tu casco visible',0,[TreasureKind::HELMET],[])
 #monsters << Monster.new('Chibithulhu', 2,bad_consequence,prize)
 
-familia_feliz = FamiliaFeliz.new(monsters)
 
-familia_feliz.add(Monster.new('Chibithulhu',2,bad_consequence,prize))
-puts "LA FAMILIA FELIZ LA FORMAN ANADIENDO 'SOPOR DUNCWICH': \n---------------------------------\n"
-familia_feliz.fam.each { |m| puts m.to_s() }
-
-=begin
 #EL SOPOR DE DUNWICH
 prize = Prize.new(1,1) 
 bad_consequence = BadConsequence.new_level_specific_treasures('El primordial bostezo contagioso. Pierdes el calzado visible',0,[],[TreasureKind::SHOES])
@@ -138,4 +132,4 @@ monsters.each do |monstruo|
   puts monstruo if !monstruo.bc.get_specific_hidden_treasures().empty? || !monstruo.bc.get_specific_visible_treasures().empty?
 end
 
-=end
+

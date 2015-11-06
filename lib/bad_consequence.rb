@@ -47,7 +47,11 @@ class BadConsequence
   end
   
   def is_empty()
-    
+    b = false
+    if @levels == 0 && @n_visible_treasures == 0 && @n_hidden_treasures == 0 && death == false && @specific_hidden_treasures.empty? && @specific_visible_treasures.empty?
+      b = true
+    end
+    b
   end
   
   def get_levels()
