@@ -107,7 +107,7 @@ end
 
   #EL GORRÓN EN EL UMBRAL
   prize = Prize.new(3,1) 
-  bad_consequence = BadConsequence.new_level_number_of_treasures('Pierdes todos tus tesoros visibles', 0, BadConsequence.MAXTREASURES, 0)
+  bad_consequence = BadConsequence.new_level_number_of_treasures('Pierdes todos tus tesoros visibles', 0, BadConsequence.get_max_treasures(), 0)
   @unused_monsters << Monster.new('El gorron en el umbral', 10,bad_consequence,prize)
 
   #H.P. MUNCHCRAFT
