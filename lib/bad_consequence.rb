@@ -3,7 +3,7 @@
 # and open the template in the editor.
 
 class BadConsequence
-  @@MAXTRESURES = 10
+  @@MAXTREASURES = 10
   attr_accessor :text,:levels,:n_visible_treasures,:n_hidden_treasures,:death
   #Declaración de arrays
   @specific_hidden_treasures = Array.new
