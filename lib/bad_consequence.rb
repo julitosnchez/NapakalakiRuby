@@ -38,6 +38,10 @@ class BadConsequence
     "Descripcion carta: #{@text}\nNiveles perdidos: #{@levels}\nNumero de tesoros visibles: #{@n_visible_treasures}\nNumero de tesoros escondidos: #{@n_hidden_treasures}\nTesoros visibles: #{@specific_visible_treasures}\nTesoros escondidos: #{@specific_hidden_treasures}\nImplica muerte: #{@death}\n\n"
   end
   #Consultores
+  def get_max_treasures
+    @@MAXTREASURES
+  end
+  
   def get_specific_hidden_treasures()
     @specific_hidden_treasures
   end
