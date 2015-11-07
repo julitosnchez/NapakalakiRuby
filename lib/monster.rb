@@ -2,6 +2,8 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
+
+
 class Monster
   attr_accessor :name,:combat_level,:prize,:bad_consequence
   def initialize(name,level,bc,price)
