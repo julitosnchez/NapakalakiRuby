@@ -8,6 +8,7 @@ class Dice
   
   public
   def next_number()
-    
+    nr = rnd(5)+1
+    nr
   end
 end

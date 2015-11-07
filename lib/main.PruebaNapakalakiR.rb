@@ -8,6 +8,7 @@ require_relative 'monster.rb'
 require_relative 'treasure_kind.rb'
 #encoding: utf­8
 
+
 #Declaracion de array de monstruos
 monsters = Array.new
 

@@ -178,11 +178,21 @@ end
  end
   
   def shuffle_treasures()
-    
+    for i in 0..@unused_treasures.length
+      aux = @unused_treasures.at(i)
+      random = rnd(@unused_treasures.length)
+      @unused_treasures[i] = @unused_treasures[random]
+      @unused_treasures[random] = aux
+    end
   end
   
   def shuffle_monsters()
-    
+    for i in 0..@unused_monsters.length
+      aux = @unused_monsters.at(i)
+      random = rnd(@unused_monsters.length)
+      @unused_monsters[i] = @unused_monsters[random]
+      @unused_monsters[random] = aux
+    end
   end
   
   public #A partir de aquí, todo lo que viene acontinuación es público
@@ -195,11 +205,11 @@ end
   end
   
   def give_treasure_back(t)
-    
+    @used_treasures << t
   end
   
   def give_monster_back(m)
-    
+    @used_monsters << m
   end
   
   def init_cards()
