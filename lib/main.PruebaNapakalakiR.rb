@@ -29,6 +29,23 @@ prize = Prize.new(2,1)
 bad_consequence = BadConsequence.new_level_specific_treasures('Pierdes tu armadura visible y otra oculta',0,[TreasureKind::ARMOR],[TreasureKind::ARMOR])
 monsters << Monster.new('3 Byakhees de bonanza', 8,bad_consequence,prize)
 
+#-----------------------------------------------------------------------------------------------------------------------------------------------------
+#------------------------------------------------PRUEBA FOR-------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+for i in 0..monsters.length
+  puts monsters[i].to_s
+end
+
+#-----------------------------------------------------------------------------------------------------------------------------------------------------
+#-----------------------------------------------------WHILE-----------------------------------------------------------------------------------------------
+
+i = 0
+
+while i < monsters.length
+  puts monsters.at(i).to_s
+  i = i+1
+end
 
 #Chibithulhu
 prize = Prize.new(1,1) 
@@ -132,5 +149,4 @@ monsters.each { |monstruo| if monstruo.prize.level > 1; puts monstruo end }
 monsters.each do |monstruo|
   puts monstruo if !monstruo.bc.get_specific_hidden_treasures().empty? || !monstruo.bc.get_specific_visible_treasures().empty?
 end
-
 
