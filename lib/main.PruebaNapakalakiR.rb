@@ -6,7 +6,6 @@ require_relative 'prize.rb'
 require_relative 'bad_consequence.rb'
 require_relative 'monster.rb'
 require_relative 'treasure_kind.rb'
-include dobleces
 
 #encoding: utf­8
 
@@ -25,16 +24,6 @@ prize = Prize.new(4,1)
 bad_consequence = BadConsequence.new_level_specific_treasures('Te atrapan para llevarte de fiesta y te dejan caer en mitad del vuelo.Descarta 1 mano visible y 1 mano oculta',0,[TreasureKind::ONEHAND],[TreasureKind::ONEHAND])
 monsters << Monster.new('Angeles de la noche ibicenca',14,bad_consequence,prize)
 
-mi_alter_ego = AlterEgo.new(3,monsters);
-
-puts mi_alter_ego.get_nivel_bondad()
-
-
-
-
-
-
-=begin
 #3 BYAKHEES DE BONANZA
 prize = Prize.new(2,1) 
 bad_consequence = BadConsequence.new_level_specific_treasures('Pierdes tu armadura visible y otra oculta',0,[TreasureKind::ARMOR],[TreasureKind::ARMOR])
