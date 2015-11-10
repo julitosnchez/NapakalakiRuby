@@ -4,31 +4,29 @@
 
 module Dobleces
     class AlterEgo
-      @@descripcion = "en alter ego es una personalidad alternativa y los monstruos tambien pueden tener amigos"
-      @monstruos_amigos = Array.new
+      @@descripcion = "En alter ego es una personalidad alternativa y los monstruos tambien pueden tener amigos"
       attr_reader :nivel_de_bondad
       public :nivel_de_bondad
       
-      def new(bondad,amigos)
-        m = AlterEgo.new
-        m.nivel_de_bondad = bondad
-        m.monstruos_amigos = amigos
-        m
+      def initialize(bondad,amigos)
+        @nivel_de_bondad = bondad
+        @monstruos_amigos = amigos;
       end
       
-      def new2(bondad)
-        m = AlterEgo.new
-        m.nivel_de_bondad = bondad;
-        m
+      def self.new1(bondad,amigos)
+        new(bondad,amigos)
+      end
+      
+      def self.new2(bondad)
+        new(bondad,Array.new)
       end
       
       def to_s()
-        "NivelBondad #{nivel_de_bondad}.Numero de amigos #{monstruos_amigos.length}"
+        "NivelBondad #{@nivel_de_bondad}.Numero de amigos #{@monstruos_amigos.length}"
       end
       
-      
-      def get_nivel_bondad
-       nivel_de_bondad
+      def get_nivel_bondad()
+       @nivel_de_bondad
       end
   end
 end
