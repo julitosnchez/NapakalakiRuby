@@ -1,6 +1,8 @@
 # To change this license header, choose License Headers in Project Properties.
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
+require_relative 'award.rb'
+include Award
 
 class Monster
   attr_accessor :name,:combat_level,:prize,:bad_consequence
@@ -20,7 +22,19 @@ class Monster
   end
   
   def get_treasures_gained()
-    @prize.treasures
+    @prize.get_treasures()
   end
+ 
   
+  #EXAM-INICIO
+  private
+  def conditional_put(un_array)
+    un_array.each { |i| 
+      if i < @prize.get_treasures()
+        puts i
+      end
+      
+    }
+  end
+
 end
