@@ -4,14 +4,17 @@
 
 class Player
   @@MAX_LEVEL = 10
-  attr_reader :name,:level,:dead,:can_i_steal,:visible_treasures,:hidden_treasures
-  @visible_treasures = Array.new
-  @hidden_treasures = Array.new
+  #¿ESTO SE PUEDE HACER PARA NOTIFICAR QUE EXISTEN PERO NO INICIALIZARLOS?
   @pending_bad_consequence
   @enemy
   
   def initialize(name)
-    
+    @name = name
+    @level = 1
+    @dead = true
+    @can_i_steal = true
+    @visible_treasures = Array.new
+    @hidden_treasures = Array.new
   end
   
   def combat(m)

@@ -4,17 +4,27 @@
 include Singleton
 
 class Napakalaki
-  attr_reader :current_monster,:current_player
-  @players = Array.new
-  @dealer
+  attr_reader :current_monster,:current_player,:players
+  
   
   private
   def init_players(names)
     
+    #Creamos array de jugadores
+    @players = Array.new
+    
+    #Vamos añadiendo los jugadores
+    names.each { |n|
+    
+      @players.push(Player.new(n))
+      
+    }
   end
   
   def next_player()
-    
+    if(players.at(0) == @current_player)
+      
+    end
   end
   
   def next_turn_allowed()
