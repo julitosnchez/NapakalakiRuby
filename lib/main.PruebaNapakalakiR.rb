@@ -31,9 +31,18 @@ bad_consequence = BadConsequence.new_level_specific_treasures('Pierdes tu armadu
 monsters << Monster.new('3 Byakhees de bonanza', 8,bad_consequence,prize)
 
 
+m = Array.new
+
+m << '1'
+m << '2'
+
+puts m.length
 
 
+Monster.prueba(m)
 
+
+=begin
 #Chibithulhu
 prize = Prize.new(1,1) 
 bad_consequence = BadConsequence.new_level_specific_treasures('Embobados con el lindo primigenio te descartas de tu casco visible',0,[TreasureKind::HELMET],[])
@@ -137,4 +146,5 @@ monsters.each do |monstruo|
   puts monstruo if !monstruo.bc.get_specific_hidden_treasures().empty? || !monstruo.bc.get_specific_visible_treasures().empty?
 end
 
+=end
 
