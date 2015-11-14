@@ -3,7 +3,7 @@
 # and open the template in the editor.
 
 class BadConsequence
-  @@MAXTRESURES = 10
+  @@MAXTREASURES = 10
   attr_accessor :text,:levels,:n_visible_treasures,:n_hidden_treasures,:death
   #Declaración de arrays
   @specific_hidden_treasures = Array.new
@@ -38,6 +38,10 @@ class BadConsequence
     "Descripcion carta: #{@text}\nNiveles perdidos: #{@levels}\nNumero de tesoros visibles: #{@n_visible_treasures}\nNumero de tesoros escondidos: #{@n_hidden_treasures}\nTesoros visibles: #{@specific_visible_treasures}\nTesoros escondidos: #{@specific_hidden_treasures}\nImplica muerte: #{@death}\n\n"
   end
   #Consultores
+  def self.get_max_treasures()
+    @@MAXTREASURES
+  end
+  
   def get_specific_hidden_treasures()
     @specific_hidden_treasures
   end

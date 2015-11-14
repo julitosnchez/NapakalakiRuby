@@ -6,8 +6,6 @@ require_relative 'award.rb'
 require_relative 'bad_consequence.rb'
 require_relative 'monster.rb'
 require_relative 'treasure_kind.rb'
-include Award
-
 #encoding: utf­8
 
 
@@ -145,6 +143,3 @@ monsters.each { |monstruo| if monstruo.prize.level > 1; puts monstruo end }
 monsters.each do |monstruo|
   puts monstruo if !monstruo.bc.get_specific_hidden_treasures().empty? || !monstruo.bc.get_specific_visible_treasures().empty?
 end
-
-=end
-

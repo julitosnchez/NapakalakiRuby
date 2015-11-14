@@ -4,6 +4,8 @@
 require_relative 'award.rb'
 include Award
 
+
+
 class Monster
   attr_accessor :name,:combat_level,:prize,:bad_consequence
   def initialize(name,level,bc,price)

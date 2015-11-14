@@ -5,7 +5,7 @@
 class Treasure
   attr_reader :name,:bonus,:type
   def initialize(n,bonus,t)
-    @n = name
+    @name = n
     @bonus = bonus
     @type = t
   end
