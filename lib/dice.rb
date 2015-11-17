@@ -4,11 +4,15 @@
 
 include Singleton
 
-class Dice
+module Napakalaki
+  class Dice
   
-  public
-  def next_number()
-    nr = rnd(5)+1
-    nr
+    public
+    def next_number()
+      random = Random.new
+      rnd = random.rand(6)+1
+      rnd
+    end
   end
+  
 end

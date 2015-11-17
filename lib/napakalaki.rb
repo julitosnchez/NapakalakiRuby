@@ -3,6 +3,8 @@
 # and open the template in the editor.
 include Singleton
 
+module Napakalaki
+
 class Napakalaki
   attr_reader :current_monster,:current_player,:players
   
@@ -22,16 +24,36 @@ class Napakalaki
   end
   
   def next_player()
-    if(players.at(0) == @current_player)
-      
+    random = Random.new
+    if(@players.at(0) == @current_player)
+      @players.at(random.rand(@players.length))
+    else
+      index = @players.index(@current_player)
+    
+      if(index == @players.length-1)
+        @players.at(0)
+      else
+        @players.at(index)
+      end
     end
   end
   
-  def next_turn_allowed()
-    
+  def next_turn_is_allowed()
+    @current_player.valid_state()
   end
   
   def set_enemies()
+    random = Random.new
+    
+    i = 0
+    
+    while(i < @players.length)
+      index = random.rand(@players.length)
+      if(i != index)
+        @players.at(i).set_enemy(@players.at(index))
+        i = i+1
+      end
+    end
     
   end
   
@@ -57,11 +79,11 @@ class Napakalaki
   end
   
   def get_current_player()
-    
+    @current_player
   end
   
   def get_current_monster()
-    
+    @current_monster
   end
   
   def next_turn()
@@ -69,7 +91,9 @@ class Napakalaki
   end
   
   def end_of_game(result)
-    
+    result == CombatResult::WINGNAME
   end
   
+end
+
 end

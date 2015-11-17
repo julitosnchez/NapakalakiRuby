@@ -2,6 +2,7 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 include Singleton
+module Napakalaki
 
 class CardDealer
   @unused_monsters = Array.new
@@ -178,20 +179,22 @@ end
  end
   
   def shuffle_treasures()
+    random = Random.new
     for i in 0..@unused_treasures.length
       aux = @unused_treasures.at(i)
-      random = rnd(@unused_treasures.length)
-      @unused_treasures[i] = @unused_treasures[random]
-      @unused_treasures[random] = aux
+      rnd = random.rand(@unused_treasures.length)
+      @unused_treasures[i] = @unused_treasures[rnd]
+      @unused_treasures[rnd] = aux
     end
   end
   
   def shuffle_monsters()
+    random = Random.new
     for i in 0..@unused_monsters.length
       aux = @unused_monsters.at(i)
-      random = rnd(@unused_monsters.length)
-      @unused_monsters[i] = @unused_monsters[random]
-      @unused_monsters[random] = aux
+      rnd = random.rand(@unused_monsters.length)
+      @unused_monsters[i] = @unused_monsters[rnd]
+      @unused_monsters[rnd] = aux
     end
   end
   
@@ -216,4 +219,6 @@ end
     
   end
   
+end
+
 end

@@ -8,7 +8,14 @@ require_relative 'monster.rb'
 require_relative 'treasure_kind.rb'
 #encoding: utf­8
 
+random = Random.new
 
+while(random.rand(5) != '0') do
+  puts random.rand(5)
+end
+
+
+=begin
 #Declaracion de array de monstruos
 monsters = Array.new
 
@@ -130,3 +137,4 @@ monsters.each { |monstruo| if monstruo.prize.level > 1; puts monstruo end }
 monsters.each do |monstruo|
   puts monstruo if !monstruo.bc.get_specific_hidden_treasures().empty? || !monstruo.bc.get_specific_visible_treasures().empty?
 end
+=end

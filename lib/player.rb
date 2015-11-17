@@ -2,6 +2,8 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
+module Napakalaki
+  
 class Player
   @@MAX_LEVEL = 10
   #¿ESTO SE PUEDE HACER PARA NOTIFICAR QUE EXISTEN PERO NO INICIALIZARLOS?
@@ -95,7 +97,15 @@ class Player
   end
   
   def can_make_treasure_visible(t)
-    
+    if(t.get_type() == TreasureKind::ONEHAND)
+      how_many_visible_treasures(t.get_type())!=2 && how_many_visible_treasures(TreasureKind::BOTHHANDS) == 0
+    else
+      if(t.get_type() == TreasureKind::BOTHHANDS)
+          how_many_visible_treasures(TreasureKind::ONEHAND) == 0 && how_many_visible_treasures(TreasureKind::BOTHHANDS)
+      else
+          how_many_visible_treasures(t.get_type()) == 0
+      end
+    end
   end
   
   def how_many_visible_treasures(t_kind)
@@ -114,7 +124,8 @@ class Player
   end
   
   def give_me_a_treasure()
-   
+   random = Random.new
+   @hidden_treasures.at(random.rand(@hidden_treasures.length))
   end
   
   def can_you_give_me_a_treasure()
@@ -125,4 +136,6 @@ class Player
     @can_i_steeal = false
   end
   
+ end
+ 
 end
