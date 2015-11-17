@@ -200,10 +200,37 @@ end
   
   public #A partir de aquí, todo lo que viene acontinuación es público
   def next_treasure()
+    if(@unused_treasures.empty?)
+      @used_treasures.each { |item|  
+        @unused_treasures << item
+      }
+      shuffle_treasures()
+      
+      @used_treasures.clear
+      end
+      
+    t = @unused_treasures.at(0)
     
+    @used_treasures << t
+    
+    @unused_treasures.delete(t)
   end
   
   def next_monster()
+     if(@unused_monsters.empty?)
+      @used_monsters.each { |item|  
+        @unused_monsters << item
+      }
+      shuffle_treasures()
+      
+      @used_monsters.clear
+      end
+      
+    t = @unused_monsters.at(0)
+    
+    @used_monsters << t
+    
+    @unused_monsters.delete(t)
     
   end
   

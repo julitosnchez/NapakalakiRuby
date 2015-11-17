@@ -72,11 +72,15 @@ class BadConsequence
   end
   
   def substract_visible_treasures(t)
-    
+    if(@specific_visible_treasures.count(t.get_type()) != 0)
+      @specific_visible_treasures.delete(t.get_type())
+    end
   end
   
   def substract_hidden_treasure(t)
-    
+    if(@specific_hidden_treasures.count(t.get_type()) != 0)
+      @specific_hidden_treasures.delete(t.get_type())
+    end
   end
   
   def adjust_to_fit_treasure_lists(v,h)
