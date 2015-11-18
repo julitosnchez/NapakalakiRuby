@@ -63,23 +63,31 @@ class BadConsequence
     @levels
   end
   
-  def get_n_visible_treasures
+  def get_n_visible_treasures()
     @n_visible_treasures
   end
   
-  def get_n_hidden_treasures
+  def get_n_hidden_treasures()
     @n_hidden_treasures
   end
   
   def substract_visible_treasures(t)
-    if(@specific_visible_treasures.count(t.get_type()) != 0)
-      @specific_visible_treasures.delete(t.get_type())
+    if(@n_visible_treasures > 0)
+      @n_visible_treasures = @n_visible_treasures-1
+    else
+      if(@specific_visible_treasures.count(t.get_type()) != 0)
+        @specific_visible_treasures.delete(t.get_type())
+      end
     end
   end
   
   def substract_hidden_treasure(t)
-    if(@specific_hidden_treasures.count(t.get_type()) != 0)
-      @specific_hidden_treasures.delete(t.get_type())
+    if(@n_hidden_treasures > 0)
+      @n_hidden_treasures = @n_hidden_treasures-1
+    else
+      if(@specific_hidden_treasures.count(t.get_type()) != 0)
+        @specific_hidden_treasures.delete(t.get_type())
+      end
     end
   end
   

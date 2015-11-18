@@ -27,6 +27,10 @@ class Player
     
   end
   
+  def is_dead()
+    @dead
+  end
+  
   def discard_visible_treasure(t)
     
   end
