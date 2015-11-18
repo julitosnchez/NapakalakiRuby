@@ -7,8 +7,6 @@ module Napakalaki
 class Player
   @@MAX_LEVEL = 10
   #¿ESTO SE PUEDE HACER PARA NOTIFICAR QUE EXISTEN PERO NO INICIALIZARLOS?
-  @pending_bad_consequence
-  @enemy
   
   def initialize(name)
     @name = name
@@ -17,6 +15,8 @@ class Player
     @can_i_steal = true
     @visible_treasures = Array.new
     @hidden_treasures = Array.new
+    @pending_bad_consequence
+    @enemy
   end
   
   def get_name()
@@ -47,12 +47,45 @@ class Player
     b
   end
   
+  #Cuando un jugador está en su primer turno o se ha quedado sin tesoros, hay que
+  #proporcionarle nuevos tesoros para que pueda seguir jugando
+  
   def init_treasures()
+    dealer = CardDealer.instance
+    dice = Dice.instance
+    bring_to_life()
+    treasure = dealer.next_treasure()
+    @hidden_treasures << treasure
+    number = dice.next_number()
+    
+    if(number > 1)
+      treasure = dealer.next_treasure()
+      @hidden_treasures << treasure
+    end
+    
+    if(number == 6)
+      treasure = dealer.next_treasure()
+      @hidden_treasures << treasure
+    end
     
   end
+
+=begin
+      Cuando el jugador decide robar un tesoro a su enemigo, este método comprueba que
+      puede hacerlo (sólo se puede robar un tesoro durante la partida) y que su enemigo tiene
+      tesoros ocultos para ser robados (canYouGiveMeATreasure())
+=end  
   
   def steal_treasure()
-    
+    can_i = @can_i_steal
+    if(can_i)
+      can_you = @enemy.can_you_give_me_a_treasure()
+      if(can_you)
+        treasure = @enemy.give_me_a_tresure()
+        @hidden_treasures << treasure
+        have_stolen()
+      end
+    end
   end
   
   def set_enemy(enmy)
@@ -115,7 +148,11 @@ class Player
   #monstruo con el que combatió
   
   def apply_bad_consequence(m)
-    bad_consequence = m
+    bad_consequence = m.get_BC()
+    n_levels = bad_consequence.get_levels()
+    decrement_levels(n_levels)
+    pending_bad = bad_consequence.adjust_to_fit_treasure_lists(@visible_treasures,@hidden_treasures)
+    set_pending_bad_consequence(pending_bad)
   end
   
   def can_make_treasure_visible(t)
