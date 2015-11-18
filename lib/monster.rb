@@ -19,6 +19,14 @@ module Napakalaki
     def get_levels_gained()
       @prize.level
     end
+    
+    def get_BC()
+      @bad_consequence
+    end
+    
+    def get_prize()
+      @prize
+    end
   
     def get_treasures_gained()
       @prize.get_treasures()

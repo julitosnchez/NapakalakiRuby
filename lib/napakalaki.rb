@@ -133,8 +133,13 @@ Se encarga de solicitar a CardDealer la inicialización de los mazos de cartas d
     if(state_ok)
       @current_monster = dealer.next_monster()
       @current_player = next_player()
-      dead = @current_player.
+      dead = @current_player.is_dead()
+      if(dead)
+        @current_player.init_treasures()
+      end
     end
+    
+    state_ok
   end
   
   def end_of_game(result)

@@ -19,6 +19,10 @@ class Player
     @hidden_treasures = Array.new
   end
   
+  def get_name()
+    @name
+  end
+  
   def combat(m)
     
   end
@@ -93,11 +97,25 @@ class Player
   end
   
   def apply_prize(m)
+    n_levels = m.get_levels_gained()
+    increment_levels(n_levels)
+    n_treasures = m.get_treasures_gained()
     
+    if(n_treasures > 0)
+      dealer = CardDealer.instance
+      for i in 0..n_treasures 
+        treasure = dealer.next_treasure()
+        @hidden_treasures << treasure
+      end
+    end
   end
   
+  #Cuando el jugador ha perdido el combate, 
+  #hay que considerar el mal rollo que le impone el
+  #monstruo con el que combatió
+  
   def apply_bad_consequence(m)
-    
+    bad_consequence = m
   end
   
   def can_make_treasure_visible(t)
