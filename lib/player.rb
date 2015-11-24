@@ -24,11 +24,30 @@ class Player
   end
   
   def combat(m)
-    
+    my_level = get_combat_level()
+    monster_level = m.combat_level
+    combat_result
+        
+    if (my_level > monster_level)
+      apply_prize(m)
+      if (@level >= @@MAXLEVEL)
+        combat_result = CombatResult::WINGAME
+      else
+        combat_result = CombatResult::WIN
+      end
+    else
+      apply_bad_consequence(m)
+      combat_result = CombatResult::LOSE
+    end
+    combat_result
   end
   
   def make_treasure_visible(t)
-    
+    can_i = can_make_treasure_visible(t)
+    if (can_i)
+      @visible_treasures << t
+      @hidden_treasures.delete(t)
+    end
   end
   
   def is_dead()
@@ -36,7 +55,19 @@ class Player
   end
   
   def discard_visible_treasure(t)
-    
+    @visible_treasures.delete(t);
+    if (@pending_bad_consequence!=nil && !@pending_bad_consequence.empty?)
+      @pending_bad_consequence.substract_visible_treasure(t)
+    end
+    dielf_no_treasures()
+  end
+  
+  def discard_hidden_treasure(t)
+      @hidden_treasures.delete(t);
+      if (@pending_bad_consequence!=nil && !@pending_bad_consequence.empty?)
+          @pending_bad_consequence.substract_hidden_treasure(t)
+      end
+      dielf_no_treasures()
   end
   
   def valid_state()
