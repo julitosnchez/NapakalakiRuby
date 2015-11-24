@@ -243,7 +243,8 @@ end
   end
   
   def init_cards()
-    
+    init_treasure_card_deck()
+    init_monster_card_deck()
   end
   
 end
