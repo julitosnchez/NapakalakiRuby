@@ -71,7 +71,7 @@ class BadConsequence
     @n_hidden_treasures
   end
   
-  def substract_visible_treasures(t)
+  def substract_visible_treasure(t)
     if(@n_visible_treasures > 0)
       @n_visible_treasures = @n_visible_treasures-1
     else

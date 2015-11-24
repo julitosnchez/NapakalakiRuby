@@ -2,11 +2,12 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
+# ¿ES NECESARIO LO DE MODULE? ¿SE PUEDEN DEVOLVER VARIABLES LOCALES?
+
 module Napakalaki
   
 class Player
   @@MAX_LEVEL = 10
-  #¿ESTO SE PUEDE HACER PARA NOTIFICAR QUE EXISTEN PERO NO INICIALIZARLOS?
   
   def initialize(name)
     @name = name
@@ -24,11 +25,29 @@ class Player
   end
   
   def combat(m)
+    my_level = get_combat_level()
+    monster_level = m.get_combat_level()
     
+    if(my_level>monster_level)
+      apply_prize(m)
+      if(@level >= @@MAX_LEVEL)
+        combat_result = CombatResult::WINGNAME
+      else
+        combat_result = CombatResult::WIN
+      end
+    else
+      apply_bad_consequenc(m)
+      combat_result = CombatResult::LOSE
+    end
+    combat_result
   end
   
   def make_treasure_visible(t)
-    
+    can_i = can_make_treasure_visible(t)
+    if(can_i == true)
+      @visible_treasures << t
+      @hidden_treasures.delete(t)
+    end
   end
   
   def is_dead()
@@ -36,7 +55,19 @@ class Player
   end
   
   def discard_visible_treasure(t)
-    
+    @visible_treasures.delete(t)
+    if(!@pending_bad_consequence.nil? && !@pending_bad_consequence.empty?)
+      @pending_bad_consequence.substract_visible_treasures(t)
+    end
+    dielf_no_treasures()
+  end
+  
+  def discard_hidden_treasure(t)
+     @hidden_treasures.delete(t)
+    if(!@pending_bad_consequence.nil? && !@pending_bad_consequence.empty?)
+      @pending_bad_consequence.substract_hidden_treasure(t)
+    end
+    dielf_no_treasures()
   end
   
   def valid_state()
@@ -93,7 +124,15 @@ class Player
   end
   
   def discard_all_treasures()
+    @visible_treasures.each { |visible_treasure|  
+      treasure = visible_treasure
+      self.discard_visible_treasure()
+    }
     
+    @hidden_treasures.each { |hidden_treasure| 
+      treasure = hidden_treasure
+      self.discard_hidden_treasures(treasure)
+    }
   end
   
   private
