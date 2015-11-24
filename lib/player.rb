@@ -44,7 +44,7 @@ class Player
   
   def make_treasure_visible(t)
     can_i = can_make_treasure_visible(t)
-    if(can_i == true)
+    if (can_i)
       @visible_treasures << t
       @hidden_treasures.delete(t)
     end
