@@ -92,9 +92,56 @@ class BadConsequence
   end
   
   def adjust_to_fit_treasure_lists(v,h)
+    tkv = Array.new
+    tkh = Array.new
+    v.each { |i|  
+      tkv << i.get_type()
+    }
+    h.each { |e| 
+      tkh << e.get_type()
+    }
     
+    if(@n_hidden_treasures != 0 || @n_visible_treasures != 0)
+      nvisible = 0
+      nhidden = 0
+      if(@n_visible_treasures > 0)
+        if(@n_visible_treasures > tkv.length)
+          nvisible = @n_visible_treasures
+        else
+          nvisible = tkv.length
+        end
+      end
+      if(@n_hidden_treasures > 0)
+        if(@n_hidden_treasures > tkh.length)
+          nhidden = @n_hidden_treasures
+        else
+          nhidden = tkh.length
+        end
+      end
+      bc = BadConsequence.new_level_number_of_treasures(@text,@levels,nvisible,nhidden)
+      bc
+    else
+      visible_treasures = Array.new
+      hidden_treasures = Array.new
+      if(!@specific_hidden_treasures.empty?)
+        @specific_hidden_treasures.each{ |i|
+          if(h.include?(i))
+            hidden_treasures << i
+          end
+        }
+      end
+      if(!@specific_visible_treasures.empty?)
+        @specific_visible_treasures.each{ |i|
+          if(v.include?(i))
+            visible_treasures << i
+          end
+        }
+      end
+      bc = BadConsequence.new_level_specific_treasures(@text,@levels,visible_treasures,hidden_treasures)
+      bc
   end
   
  end
  
+end
 end

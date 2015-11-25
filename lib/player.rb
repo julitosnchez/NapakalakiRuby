@@ -2,7 +2,7 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
-# ¿ES NECESARIO LO DE MODULE? ¿SE PUEDEN DEVOLVER VARIABLES LOCALES?
+# ¿ES NECESARIO LO DE MODULE? ¿SE PUEDEN DEVOLVER OBJETOS LOCALES?
 
 module Napakalaki
   

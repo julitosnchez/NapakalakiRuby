@@ -25,8 +25,9 @@ class Napakalaki
   
   def next_player()
     random = Random.new
-    if(@players.at(0) == @current_player)
-      @players.at(random.rand(@players.length))
+    if(@current_player.nil?)
+      @current_player = @players.at(random.rand(@players.length))
+      @current_player
     else
       index = @players.index(@current_player)
     
