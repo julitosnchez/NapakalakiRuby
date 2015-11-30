@@ -1,12 +1,14 @@
 # To change this license header, choose License Headers in Project Properties.
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
-include Singleton
+require 'singleton'
 
 module Napakalaki
-
-class Napakalaki
-  attr_reader :current_monster,:current_player,:players
+  class Napakalaki
+    include Singleton
+    @@instance = Napakalaki.instance
+  
+  attr_reader :current_monster,:current_player,:players,:dealer
   
   
   private
@@ -25,8 +27,9 @@ class Napakalaki
   
   def next_player()
     random = Random.new
-    if(@players.at(0) == @current_player)
-      @players.at(random.rand(@players.length))
+    if(@current_player.nil?)
+      @current_player = @players.at(random.rand(@players.length))
+      @current_player
     else
       index = @players.index(@current_player)
     
@@ -63,8 +66,8 @@ class Napakalaki
 =end
   def develop_combat()
     result = @current_player.combat(@current_monster)
-    dealer = CardDealer.instance
-    dealer.give_monster_back(@current_monster)
+    @dealer = CardDealer.instance
+    @dealer.give_monster_back(@current_monster)
     result
   end
 =begin
@@ -78,15 +81,15 @@ class Napakalaki
     dealer = CardDealer.instance
     treasures.each { |t|  
       @current_player.discard_visible_treasure(t)
-      dealer.give_treasure_back(t) 
+      @dealer.give_treasure_back(t) 
     }
   end
   #Similar a lo anterior
   def discard_hidden_treasures(treasures)
-    dealer = CardDealer.instance
+    @dealer = CardDealer.instance
     treasures.each { |t|  
       @current_player.discard_hidden_treasure(t)
-      dealer.give_treasure_back(t) 
+      @dealer.give_treasure_back(t) 
     }
   end
   
@@ -111,8 +114,8 @@ Se encarga de solicitar a CardDealer la inicialización de los mazos de cartas d
   def init_game(players)
     init_players(players)
     set_enemies()
-    dealer = CardDealer.instance
-    dealer.init_cards()
+    @dealer = CardDealer.instance
+    @dealer.init_cards()
   end
   
   def get_current_player()
@@ -128,7 +131,7 @@ Se encarga de solicitar a CardDealer la inicialización de los mazos de cartas d
   
   def next_turn()
     state_ok = nex_turn_is_allowed()
-    dealer = CardDealer.instance
+    @dealer = CardDealer.instance
     
     if(state_ok)
       @current_monster = dealer.next_monster()

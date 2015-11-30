@@ -10,7 +10,7 @@ module Napakalaki
     @specific_hidden_treasures = Array.new
     @specific_visible_treasures = Array.new
     private_class_method :new
-
+    
     #Método initialize (No es el constructor pero lo invoca)
     def initialize(a_text,some_levels,some_visible_treasures,some_hidden_treasures,some_specific_visible_treasures,some_specific_hidden_treasures,death)
       @text = a_text
