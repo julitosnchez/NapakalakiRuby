@@ -3,7 +3,7 @@
 # and open the template in the editor.
 
 require_relative "Napakalaki"
-require_relative "GameTester"
+require_relative "Test"
 
 module NapakalakiGame
     class EjemploMain

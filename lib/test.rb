@@ -2,7 +2,7 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
-# encoding: utf-8
+# encoding: 
 
 require 'singleton'
 require_relative 'Napakalaki'
@@ -20,7 +20,7 @@ module Test
     
     Exit = Option.new(0, "Salir")
     GoBack = Option.new(-1, "Menu anterior")
-    Combat = Option.new(69, "Â¡Â¡ C O M B A T I R !!")
+    Combat = Option.new(69, "¡¡ C O M B A T I R !!")
     ShowMonster = Option.new(10, "Mostrar monstruo")
     ShowVisibleTreasure = Option.new(11, "Mostrar tesoros visibles")
     ShowHiddenTreasure = Option.new(12, "Mostrar tesoros ocultos") 
@@ -153,7 +153,7 @@ module Test
   end
   
   def inputErrorMessage () 
-    puts "\n\n ERROR !!! \n\n SelecciÃ³n errÃ³nea. IntÃ©ntalo de nuevo.\n\n"
+    puts "\n\n ERROR !!! \n\n Seleccion erronea. Intentalo de nuevo.\n\n"
   end
     
   def manageDiscardTreasures (visible, aPlayer)
@@ -199,7 +199,7 @@ module Test
       menu.each do |c| #se muestran las opciones del menÃƒÂº
         puts "#{c.menu}" + " : " + c.text
       end
-      puts "\n Elige una opciÃ³n: "
+      puts "\n Elige una opcion: "
       capture = gets.chomp
       begin
         option = Integer(capture)
@@ -263,7 +263,7 @@ module Test
         if ! @game.nextTurn() then
           puts "\n\n ERROR \n"
           puts "No cumples las condiciones para pasar de turno."
-          puts "O bien tienes mÃ¡s de 4 tesoros ocultos"
+          puts "O bien tienes mas de 4 tesoros ocultos"
           puts "O bien te queda mal rollo por cumplir"
         else 
           command = Command::NextTurnAllowed
