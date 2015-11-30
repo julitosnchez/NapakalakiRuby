@@ -2,11 +2,10 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
-include Singleton
-
 module Napakalaki
   class Dice
   
+    include Singleton
     public
     def next_number()
       random = Random.new
