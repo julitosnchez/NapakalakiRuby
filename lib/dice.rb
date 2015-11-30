@@ -4,8 +4,8 @@
 
 module Napakalaki
   class Dice
-  
     include Singleton
+    @@instance = Dice.instance
     public
     def next_number()
       random = Random.new
