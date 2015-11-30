@@ -2,13 +2,16 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
+
 class Prize
-  attr_accessor :treasures,:level
+  attr_reader :treasures,:level
   def initialize(treasures,level)
     @treasures = treasures
     @level = level
   end
+  
   def to_s()
-    "Tesoros ganados: #{@treasures} \n Niveles ganados: #{@levels}"
+    "Tesoros ganados: #{@treasures}\nNiveles ganados: #{@levels}"
   end
 end
+

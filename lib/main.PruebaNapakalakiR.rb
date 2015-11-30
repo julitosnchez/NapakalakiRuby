@@ -2,10 +2,11 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
+#encoding: utf­8
 require_relative 'prize.rb'
 require_relative 'bad_consequence.rb'
 require_relative 'monster.rb'
-#encoding: utf­8
+require_relative 'treasure_kind.rb'
 
 
 #Declaracion de array de monstruos
@@ -19,7 +20,7 @@ monsters << Monster.new('El rey de rosa',13,bad_consequence,prize)
 #ANGELES DE LA NOCHE IBICENCA
 prize = Prize.new(4,1) 
 bad_consequence = BadConsequence.new_level_specific_treasures('Te atrapan para llevarte de fiesta y te dejan caer en mitad del vuelo.Descarta 1 mano visible y 1 mano oculta',0,[TreasureKind::ONEHAND],[TreasureKind::ONEHAND])
-monsters << Monster.new('Ángeles de la noche ibicenca',14,bad_consequence,prize)
+monsters << Monster.new('Angeles de la noche ibicenca',14,bad_consequence,prize)
 
 #3 BYAKHEES DE BONANZA
 prize = Prize.new(2,1) 
@@ -39,7 +40,7 @@ monsters << Monster.new('El sopor de Dunwich', 2,bad_consequence,prize)
 #EL GORRÓN EN EL UMBRAL
 prize = Prize.new(3,1) 
 bad_consequence = BadConsequence.new_level_specific_treasures('Pierdes todos tus tesoros visibles',0,[TreasureKind::ARMOR,TreasureKind::ONEHAND,TreasureKind::BOTHHANDS,TreasureKind::HELMET,TreasureKind::SHOES],[])
-monsters << Monster.new('El gorrón en el umbral', 10,bad_consequence,prize)
+monsters << Monster.new('El gorron en el umbral', 10,bad_consequence,prize)
 
 #H.P. MUNCHCRAFT
 prize = Prize.new(2,1)
@@ -74,7 +75,7 @@ monsters << Monster.new('Dameargo', 1, bad_consequence, prize)
 #POLLIPÓLIPO VOLANTE
 prize = Prize.new(1, 1)
 bad_consequence = BadConsequence.new_level_specific_treasures('Da mucho asquito. Pierdes 3 niveles',3,[],[])
-monsters << Monster.new('Pollipólipo volante', 3, bad_consequence, prize)
+monsters << Monster.new('Pollipolipo volante', 3, bad_consequence, prize)
 
 #YSKHTIHYSSG-GOTH
 prize = Prize.new(3, 1)
@@ -104,10 +105,33 @@ monsters << Monster.new('El lenguas', 20, bad_consequence, prize)
 #BICÉFALO
 prize = Prize.new(1, 1)
 bad_consequence = BadConsequence.new_level_specific_treasures('Te faltan manos para tanta cabeza.Pierdes 3 niveles y tus tesoros visibles de las manos', 3, [TreasureKind::BOTHHANDS], [])
-monsters << Monster.new('Bicefalo ',20, bad_consquence, prize)
+monsters << Monster.new('Bicefalo ',20, bad_consequence, prize)
 
 
-#¿ERROR? 
-monsters.each do |elemento|
-  puts elemento.to_s()
+#Muestra los monstruos con nivel de combate mayor que 10
+monsters.each do |monstruo|
+  if monstruo.combat_level > 10
+    puts monstruo
+  end
+end
+
+#Muestra los monstruos que tienen un mal rollo que implica solo pérdida de niveles
+monsters.each do |monstruo|
+  if monstruo.bc.levels != 0 && monstruo.bc.n_visible_treasures == 0 && monstruo.bc.n_hidden_treasures == 0 && monstruo.bc.get_specific_visible_treasures().empty? && monstruo.bc.get_specific_hidden_treasures().empty?
+    puts monstruo
+  end
+end
+
+#Muestra los monstruos que tienen un buen rollo que indica una ganancia de niveles superior a 1
+monsters.each do |monstruo|
+  if monstruo.prize.level > 1
+    puts monstruo
+  end
+end
+
+#Muestra los monstruos que tienen un mal rollo que implica la pérdida de un determinado tipo de tesoros
+monsters.each do |monstruo|
+  if !monstruo.bc.get_specific_hidden_treasures().empty? || !monstruo.bc.get_specific_visible_treasures().empty?
+    puts monstruo
+  end
 end
