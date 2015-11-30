@@ -2,15 +2,23 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
-#encoding: utf­8
-require_relative 'prize.rb'
+require_relative 'award.rb'
 require_relative 'bad_consequence.rb'
 require_relative 'monster.rb'
 require_relative 'treasure_kind.rb'
+#encoding: utf­8
+
+random = Random.new
+
+while(random.rand(5) != '0') do
+  puts random.rand(5)
+end
 
 
+=begin
 #Declaracion de array de monstruos
 monsters = Array.new
+
 
 #EL REY ROSA
 prize = Prize.new(4,2) 
@@ -30,7 +38,8 @@ monsters << Monster.new('3 Byakhees de bonanza', 8,bad_consequence,prize)
 #Chibithulhu
 prize = Prize.new(1,1) 
 bad_consequence = BadConsequence.new_level_specific_treasures('Embobados con el lindo primigenio te descartas de tu casco visible',0,[TreasureKind::HELMET],[])
-monsters << Monster.new('Chibithulhu', 2,bad_consequence,prize)
+#monsters << Monster.new('Chibithulhu', 2,bad_consequence,prize)
+
 
 #EL SOPOR DE DUNWICH
 prize = Prize.new(1,1) 
@@ -107,31 +116,25 @@ prize = Prize.new(1, 1)
 bad_consequence = BadConsequence.new_level_specific_treasures('Te faltan manos para tanta cabeza.Pierdes 3 niveles y tus tesoros visibles de las manos', 3, [TreasureKind::BOTHHANDS], [])
 monsters << Monster.new('Bicefalo ',20, bad_consequence, prize)
 
-
-#Muestra los monstruos con nivel de combate mayor que 10
+#Monstruos con un nivel de combate superior a 10
 monsters.each do |monstruo|
   if monstruo.combat_level > 10
     puts monstruo
   end
 end
 
-#Muestra los monstruos que tienen un mal rollo que implica solo pérdida de niveles
-monsters.each do |monstruo|
-  if monstruo.bc.levels != 0 && monstruo.bc.n_visible_treasures == 0 && monstruo.bc.n_hidden_treasures == 0 && monstruo.bc.get_specific_visible_treasures().empty? && monstruo.bc.get_specific_hidden_treasures().empty?
-    puts monstruo
+#Monstruos que tengan un mal rollo que sólo implique pérdida de niveles
+monsters.each do |monstruo| 
+  if monstruo.bc.levels!=0 && monstruo.bc.n_visible_treasures==0 && monstruo.bc.n_hidden_treasures==0 && monstruo.bc.get_specific_hidden_treasures().empty? && monstruo.bc.get_specific_visible_treasures().empty?;
+      puts monstruo
   end
 end
 
-#Muestra los monstruos que tienen un buen rollo que indica una ganancia de niveles superior a 1
-monsters.each do |monstruo|
-  if monstruo.prize.level > 1
-    puts monstruo
-  end
-end
+#Monstruos con un buen rollo que implique una ganancia de niveles superior a 1
+monsters.each { |monstruo| if monstruo.prize.level > 1; puts monstruo end }
 
-#Muestra los monstruos que tienen un mal rollo que implica la pérdida de un determinado tipo de tesoros
+#Monstruos que tengan un malo rollo que suponga pérdida de undeterminado tipo de tesoros visibles y/o ocultos
 monsters.each do |monstruo|
-  if !monstruo.bc.get_specific_hidden_treasures().empty? || !monstruo.bc.get_specific_visible_treasures().empty?
-    puts monstruo
-  end
+  puts monstruo if !monstruo.bc.get_specific_hidden_treasures().empty? || !monstruo.bc.get_specific_visible_treasures().empty?
 end
+=end

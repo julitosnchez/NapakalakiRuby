@@ -6,14 +6,13 @@ include Singleton
 
 module Napakalaki
   class Dice
-    @@instance
-  
+    
     public
-  
-    def next_number
+    def next_number()
       random = Random.new
       rnd = random.rand(6)+1
       rnd
     end
   end
+  
 end

@@ -4,23 +4,23 @@
 module Napakalaki
 
   class Treasure
-    attr_reader :name, :bonus, :type
     def initialize(n,bonus,t)
       @name = n
       @bonus = bonus
       @type = t
     end
-    
-    def get_type
+  
+    def get_type()
       @type
     end
-    
-    def get_bonus
+  
+    def get_bonus()
       @bonus
     end
-    
-    def get_name
+  
+    def get_name()
       @name
     end
+  
   end
 end
