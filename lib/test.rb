@@ -2,11 +2,10 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
-# encoding: 
+# encoding: utf-8
 
 require 'singleton'
-require_relative 'Napakalaki'
-require_relative 'Command'
+require_relative 'napakalaki.rb'
 
 module Test
     module Command  
@@ -20,7 +19,7 @@ module Test
     
     Exit = Option.new(0, "Salir")
     GoBack = Option.new(-1, "Menu anterior")
-    Combat = Option.new(69, "¡¡ C O M B A T I R !!")
+    Combat = Option.new(69, "COMBATIR")
     ShowMonster = Option.new(10, "Mostrar monstruo")
     ShowVisibleTreasure = Option.new(11, "Mostrar tesoros visibles")
     ShowHiddenTreasure = Option.new(12, "Mostrar tesoros ocultos") 

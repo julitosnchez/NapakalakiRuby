@@ -2,11 +2,14 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
-require_relative "Napakalaki"
-require_relative "Test"
+require 'singleton'
+require_relative 'napakalaki.rb'
+require_relative 'test.rb'
 
 module NapakalakiGame
     class EjemploMain
+      include Singleton
+      public_class_method :new
    
       def prueba
         
