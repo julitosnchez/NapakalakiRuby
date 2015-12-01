@@ -9,10 +9,6 @@ require_relative 'combat_result.rb'
 require_relative 'dice.rb'
 
 module Napakalaki
-require_relative 'monster.rb' 
-require_relative 'bad_consequence.rb'
-require_relative 'combat_result'
-
   
 class Player
   @@MAX_LEVEL = 10
