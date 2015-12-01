@@ -180,7 +180,7 @@ module Test
       howMany = showTreasures("Elige tesoros para intentar hacerlos visibles", aPlayer.get_hidden_treasures(), true)
       option = getTreasure (howMany);
       if (option > -1) then
-        aPlayer.make_treasures_visible (aPlayer.get_hidden_treasures()[option])
+        aPlayer.make_treasure_visible (aPlayer.get_hidden_treasures()[option])
       end
     end while (option != -1)
   end
