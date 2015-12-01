@@ -25,28 +25,34 @@ module Napakalaki
       p = Player.new(i)
       
       @players << p
-      
     }
+    next_player()
+    
   end
   
   def next_player()
     random = Random.new
     if(@current_player.nil?)
       @current_player = @players.at(random.rand(@players.length))
-      @current_player
+      return @current_player
     else
       index = @players.index(@current_player)
     
-      if(index == @players.length-1)
-        @players.at(0)
+      if(index == (@players.length-1))
+        @current_player = @players.at(0)
       else
-        @players.at(index)
+        @current_player = @players.at(index+1)
       end
     end
+    
+    return @current_player
   end
   
   def next_turn_is_allowed()
-    @current_player.valid_state()
+    if(@current_player.nil?)
+      return true
+    end
+    return @current_player.valid_state()
   end
   
   def set_enemies()
@@ -69,10 +75,12 @@ module Napakalaki
     El jugador actual entra en combate con el monstruo que le ha tocado
 =end
   def develop_combat()
-    result = @current_player.combat(@current_monster)
     dealer = CardDealer.instance
+    
+    result = @current_player.combat(@current_monster)
     dealer.give_monster_back(@current_monster)
-    result
+    
+    return result
   end
 =begin
     Operación encargada de eliminar los tesoros visibles indicados de la lista de tesoros   visibles del jugador. Al eliminar esos tesoros, si el jugador tiene un mal rollo pendiente, se
@@ -83,14 +91,17 @@ module Napakalaki
   
   def discard_visible_treasures(treasures)
     dealer = CardDealer.instance
+    
     treasures.each { |t|  
       @current_player.discard_visible_treasure(t)
       dealer.give_treasure_back(t) 
     }
   end
+  
   #Similar a lo anterior
   def discard_hidden_treasures(treasures)
     dealer = CardDealer.instance
+    
     treasures.each { |t|  
       @current_player.discard_hidden_treasure(t)
       dealer.give_treasure_back(t) 
@@ -116,10 +127,15 @@ Se encarga de solicitar a CardDealer la inicialización de los mazos de cartas d
 =end
   
   def init_game(players)
-    init_players(players)
-    set_enemies()
     dealer = CardDealer.instance
+    
+    init_players(players)
+    
+    set_enemies()
+    
     dealer.init_cards()
+    
+    next_turn()
   end
   
   def get_current_player()
@@ -134,6 +150,7 @@ Se encarga de solicitar a CardDealer la inicialización de los mazos de cartas d
   #cumple con las reglas del juego para terminar su turno
   
   def next_turn()
+    
     state_ok = nex_turn_is_allowed()
     dealer = CardDealer.instance
     
@@ -146,11 +163,11 @@ Se encarga de solicitar a CardDealer la inicialización de los mazos de cartas d
       end
     end
     
-    state_ok
+    return state_ok
   end
   
   def end_of_game(result)
-    result == CombatResult::WINGNAME
+    return result == CombatResult::WINGNAME
   end
   
 end
