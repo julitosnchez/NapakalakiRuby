@@ -28,6 +28,10 @@ class Player
     @name
   end
   
+  def self.MAX_LEVEL()
+    return @@MAX_LEVEL
+  end
+  
   def get_visible_treasures()
     @visible_treasures
   end

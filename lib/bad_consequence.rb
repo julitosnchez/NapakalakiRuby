@@ -2,6 +2,7 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 require_relative 'treasure_kind.rb'
+require_relative 'player.rb'
 
 module Napakalaki
   
@@ -33,7 +34,7 @@ module Napakalaki
     end
     #Constructor 3 programado
     def self.new_death(a_text)
-      new(a_text,0,0,0,Array.new,Array.new,true)
+      new(a_text,Player.MAX_LEVEL,@@MAX_TREASURES,@@MAX_TREASURES,Array.new,Array.new,true)
     end
     #Metodo to_s
     def to_s()
