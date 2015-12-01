@@ -95,7 +95,7 @@ class Player
   end
   
   def valid_state()
-    if @pending_bad_consequence.nil? || (@pending_bad_consequence.is_empty() && hidden_treasures.length <= 4)
+    if @pending_bad_consequence.nil? || (@pending_bad_consequence.is_empty() &&  @hidden_treasures.length <= 4)
         return true
     end
     return false
@@ -137,7 +137,11 @@ class Player
     if(can_i)
       can_you = @enemy.hidden_treasures != []
       if(can_you)
-        treasure = @enemy.give_me_a_treasure()
+           random = Random.new
+           x = random.rand(@enemy.hidden_treasures.length)
+           t  = @enemy.hidden_treasures.at(x)
+           @enemy.hidden_treasures.delete(x)
+        treasure = t
         @hidden_treasures << treasure
         have_stolen()
       end
