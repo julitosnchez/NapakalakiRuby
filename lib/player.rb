@@ -177,8 +177,8 @@ class Player
   
   def get_combat_level()
     comb_lev = 0
-    @visible_treasure.each { |iter|  
-      comb_lev = comb_lev + iter.bonus
+    @visible_treasures.each { |iter|  
+      comb_lev = comb_lev + iter.get_bonus()
     }
     comb_lev = comb_lev + @level
     if comb_lev > @@MAX_LEVEL
