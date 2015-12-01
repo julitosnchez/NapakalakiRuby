@@ -54,7 +54,7 @@ module Napakalaki
     end
 
     def is_empty()
-      if @levels == 0 && @n_visible_treasures == 0 && @n_hidden_treasures == 0 && death == false && @specific_hidden_treasures.empty? && @specific_visible_treasures.empty?
+      if @levels == 0 && @n_visible_treasures == 0 && @n_hidden_treasures == 0 && death == false && @specific_hidden_treasures.empty? == false && @specific_visible_treasures.empty? == false
         return true
       end
       return false

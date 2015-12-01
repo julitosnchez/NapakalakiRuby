@@ -13,7 +13,7 @@ module Napakalaki
 class Player
   @@MAX_LEVEL = 10
   
-  attr_reader :name,:level,:dead,:can_i_steal,:visible_treasures,:hidden_treasures
+  attr_reader :name,:level,:dead,:can_i_steal,:visible_treasures,:hidden_treasures,:enemy
   
   def initialize(name)
     @name = name
