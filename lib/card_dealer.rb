@@ -16,7 +16,7 @@ class CardDealer
   private #A partir de aquí, todo lo que viene acontinuación es privado
   def init_treasure_card_deck()
     
-    @unused_treasures << Treasure.new('¡Si mi amo!',4,[TreasureKind::HELMET])
+    @unused_treasures << Treasure.new('Si mi amo',4,[TreasureKind::HELMET])
     
     @unused_treasures << Treasure.new('Botas de investigacion',3,[TreasureKind::SHOES])
     

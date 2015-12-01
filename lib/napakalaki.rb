@@ -3,6 +3,8 @@
 # and open the template in the editor.
 require 'singleton'
 require_relative 'player.rb'
+require_relative 'card_dealer.rb'
+require_relative 'combat_result.rb'
 
 module Napakalaki
   class Napakalaki
