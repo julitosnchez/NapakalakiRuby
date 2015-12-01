@@ -95,7 +95,7 @@ class Player
   end
   
   def valid_state()
-    if @pending_bad_consequence.nil? || (@pending_bad_consequence.is_empty? && hidden_treasures.length <= 4)
+    if @pending_bad_consequence.nil? || (@pending_bad_consequence.is_empty() && hidden_treasures.length <= 4)
         return true
     end
     return false

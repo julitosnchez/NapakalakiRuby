@@ -25,7 +25,7 @@ module Napakalaki
     end
     
     def to_s
-      "#{@name}[#{@type}]"
+      "#{@name}#{@type}"
     end
   
   end

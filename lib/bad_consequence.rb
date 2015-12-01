@@ -143,7 +143,7 @@ module Napakalaki
             end
           }
         end
-        bc = BadConsequence.new(@text,0,visible_treasures,hidden_treasures)
+        bc = BadConsequence.new_level_specific_treasures(@text,0,visible_treasures,hidden_treasures)
       end
       
       return bc
