@@ -135,9 +135,9 @@ class Player
     
     can_i = can_i_steal()
     if(can_i)
-      can_you = @enemy.can_you_give_me_a_treasure()
+      can_you = @enemy.hidden_treasures != []
       if(can_you)
-        treasure = @enemy.give_me_a_tresure()
+        treasure = @enemy.give_me_a_treasure()
         @hidden_treasures << treasure
         have_stolen()
       end
