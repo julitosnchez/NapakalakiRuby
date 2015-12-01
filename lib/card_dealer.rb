@@ -15,13 +15,11 @@ module Napakalaki
 class CardDealer
   include Singleton
 
-  @unused_monsters = Array.new
-  @used_monsters = Array.new
-  @used_treasures = Array.new
-  @unused_treasures = Array.new
+  attr_reader :used_monsters,:used_treasures,:unused_treasures,:unused_monsters
   
   private #A partir de aquí, todo lo que viene acontinuación es privado
   def init_treasure_card_deck()
+    
     
     @unused_treasures << Treasure.new('Si mi amo',4,[TreasureKind::HELMET])
     
@@ -90,6 +88,7 @@ class CardDealer
 end
   
   def init_monster_card_deck()
+    
 
   #EL REY ROSA
   prize = Prize.new(4,2) 
@@ -257,6 +256,11 @@ end
   end
   
   def init_cards()
+    @used_monsters = Array.new
+    @used_treasures = Array.new
+    @unused_treasures = Array.new
+    @unused_monsters = Array.new
+    
     init_monster_card_deck()
     init_treasure_card_deck()
   end

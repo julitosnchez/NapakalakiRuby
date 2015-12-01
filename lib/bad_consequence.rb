@@ -41,7 +41,7 @@ module Napakalaki
     end
 
     def self.get_max_treasures
-      @@MAXTREASURES
+      @@MAX_TREASURES
     end
 
     def get_specific_hidden_treasures()
@@ -52,23 +52,22 @@ module Napakalaki
       @specific_visible_treasures
     end
 
-    def is_empty
-      b = false
+    def is_empty()
       if @levels == 0 && @n_visible_treasures == 0 && @n_hidden_treasures == 0 && death == false && @specific_hidden_treasures.empty? && @specific_visible_treasures.empty?
-        b = true
+        return true
       end
-      b
+      return false
     end
 
-    def get_levels
+    def get_levels()
       @levels
     end
 
-    def get_n_visible_treasures
+    def get_n_visible_treasures()
       @n_visible_treasures
     end
 
-    def get_n_hidden_treasures
+    def get_n_hidden_treasures()
       @n_hidden_treasures
     end
 
@@ -104,45 +103,51 @@ module Napakalaki
         tkh << e.get_type()
       }
       
-      if (@n_hidden_treasures!=0 && @n_visible_treasures!=0)
+      if (@n_hidden_treasures!=0 || @n_visible_treasures!=0)
         nvisible = 0;
         nhidden = 0;
-        if (@n_visible_treasures>0)
+        
+        if (@n_visible_treasures > 0)
           if (@n_visible_treasures > tkv.length)
-            nvisible = n_visible_treasures
-          else
             nvisible = tkv.length
+          else
+            nvisible = @n_visible_treasures
           end
         end
+        
         if (@n_hidden_treasures>0)
           if (@n_hidden_treasures > tkh.length)
-            nhidden = n_hidden_treasures
-          else
             nhidden = tkh.length
+          else
+            nhidden = @n_hidden_treasures
           end
         end
-        bc = BadConsequence.new_level_specific_treasures(@text,@level,nvisible,nhidden)
+        bc = BadConsequence.new_level_specific_treasures(@text,0,nvisible,nhidden)
       else
         visible_treasures = Array.new
         hidden_treasures = Array.new
-        if(!@specific_visible_treasures.empty?)
+        
+        if(@specific_visible_treasures.empty? == false)
           @specific_visible_treasures.each { |i|
-            if(v.include?(i))
+            if(tkv.include?(i))
               visible_treasures << i
             end
           }
         end
         
-        if (!@specific_hidden_treasures.empty?)
+        if (@specific_hidden_treasures.empty? == false)
           @specific_hidden_treasures.each { |e|
-            if(h.include?(e))
+            if(tkh.include?(e))
               hidden_treasures << e
             end
           }
         end
-        bc = BadConsequence.new(@text,@level,visible_treasures,hidden_treasures)
+        bc = BadConsequence.new(@text,0,visible_treasures,hidden_treasures)
       end
-      bc
+      
+      return bc
     end
+    
   end
+  
 end
