@@ -56,7 +56,11 @@ class Player
         combat_result = CombatResult::WIN
      end
    else
-     apply_bad_consequence(m)
+     if m.bad_consequence.death
+       @dead = true
+     else
+       apply_bad_consequence(m)
+     end
       combat_result = CombatResult::LOSE
     end
     return combat_result
@@ -76,8 +80,8 @@ class Player
   
   def discard_visible_treasure(t)
     @visible_treasures.delete(t)
-    if(@pending_bad_consequence.nil? != false)
-      if(@pending_bad_consequence.empty? != false)
+    if(@pending_bad_consequence.nil? == false)
+      if(@pending_bad_consequence.is_empty() == false)
         @pending_bad_consequence.substract_visible_treasures(t)
       end
     end
@@ -86,8 +90,8 @@ class Player
   
   def discard_hidden_treasure(t)
      @hidden_treasures.delete(t)
-    if(@pending_bad_consequence.nil? != false)
-      if(@pending_bad_consequence.empty? != false)
+    if(@pending_bad_consequence.nil? == false)
+      if(@pending_bad_consequence.is_empty() == false)
       @pending_bad_consequence.substract_hidden_treasure(t)
       end
     end
@@ -95,7 +99,7 @@ class Player
   end
   
   def valid_state()
-    if @pending_bad_consequence.nil? || (@pending_bad_consequence.is_empty() && hidden_treasures.length <= 4)
+    if @pending_bad_consequence.nil? || (@pending_bad_consequence.is_empty() && @hidden_treasures.length <= 4)
         return true
     end
     return false
@@ -135,9 +139,13 @@ class Player
     
     can_i = can_i_steal()
     if(can_i)
-      can_you = @enemy.can_you_give_me_a_treasure()
+      can_you = @enemy.hidden_treasures != []
       if(can_you)
-        treasure = @enemy.give_me_a_tresure()
+        random = Random.new
+        x = random.rand(@enemy.hidden_treasures.length)
+        t  = @enemy.hidden_treasures.at(x)
+        @enemy.hidden_treasures.delete(t)
+        treasure = t
         @hidden_treasures << treasure
         have_stolen()
       end
@@ -167,7 +175,7 @@ class Player
   end
   
   def to_s()
-    "#{@name}"
+   "#{@name}--> nivel de combate #{get_combat_level()}"
   end
   
   private
@@ -214,9 +222,11 @@ class Player
     
     if(n_treasures > 0)
       dealer = CardDealer.instance
-      for i in 0..n_treasures 
+      i = 0
+      while(i<n_treasures && @hidden_treasures.length<4)
         treasure = dealer.next_treasure()
         @hidden_treasures << treasure
+        i = i+1
       end
     end
   end
@@ -236,13 +246,11 @@ class Player
   def can_make_treasure_visible(t)
     if(t.get_type() == TreasureKind::ONEHAND)
       return how_many_visible_treasures(t.get_type())!=2 && how_many_visible_treasures(TreasureKind::BOTHHANDS) == 0
-    else
-      if(t.get_type() == TreasureKind::BOTHHANDS)
-          return how_many_visible_treasures(TreasureKind::ONEHAND) == 0 && how_many_visible_treasures(TreasureKind::BOTHHANDS) == 0
-      else
-          return how_many_visible_treasures(t.get_type()) == 0
-      end
     end
+    if(t.get_type() == TreasureKind::BOTHHANDS)
+        return how_many_visible_treasures(TreasureKind::ONEHAND) == 0 && how_many_visible_treasures(TreasureKind::BOTHHANDS) == 0
+    end
+    return how_many_visible_treasures(t.get_type()) == 0
   end
   
   def how_many_visible_treasures(t_kind)
@@ -277,7 +285,6 @@ class Player
   def have_stolen()
     @can_i_steal = false
   end
-  
- end
  
+  end
 end

@@ -54,7 +54,7 @@ module Napakalaki
     end
 
     def is_empty()
-      if @levels == 0 && @n_visible_treasures == 0 && @n_hidden_treasures == 0 && death == false && @specific_hidden_treasures.empty? && @specific_visible_treasures.empty?
+      if @levels == 0 && @n_visible_treasures == 0 && @n_hidden_treasures == 0 && @death == false && @specific_hidden_treasures == [] && @specific_visible_treasures == []
         return true
       end
       return false
@@ -123,7 +123,7 @@ module Napakalaki
             nhidden = @n_hidden_treasures
           end
         end
-        bc = BadConsequence.new_level_specific_treasures(@text,0,nvisible,nhidden)
+        bc = BadConsequence.new_level_number_of_treasures(@text,0,nvisible,nhidden)
       else
         visible_treasures = Array.new
         hidden_treasures = Array.new
