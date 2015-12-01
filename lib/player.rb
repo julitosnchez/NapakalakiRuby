@@ -24,6 +24,14 @@ class Player
     @name
   end
   
+  def get_visible_treasures
+    @visible_treasures
+  end
+  
+  def get_hidden_treasures
+    @hidden_treasures
+  end
+  
   def combat(m)
     my_level = get_combat_level()
     monster_level = m.get_combat_level()

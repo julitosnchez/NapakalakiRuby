@@ -6,7 +6,7 @@ require 'singleton'
 module Napakalaki
   class Dice
     include Singleton
-
+    
     public
     def next_number()
       random = Random.new

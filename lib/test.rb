@@ -42,10 +42,10 @@ module Test
     
     @game = aGame
     names = getPlayerNames(numberOfPlayers)
-    @game.initGame(names) 
+    @game.init_game(names) 
     
     begin #Mientras dure la partida
-      currentPlayer=@game.getCurrentPlayer()
+      currentPlayer=@game.get_current_player()
       begin #Mientras el jugador se decide a conocer al monstruo
         puts "******* ******* ******* ******* ******* ******* *******"
         puts "\n\n Turno de: " + currentPlayer.to_s() 
@@ -60,10 +60,10 @@ module Test
           command = processCommand(command, currentPlayer)
         end while (command != Command::Exit && command != Command::Combat)
         if (command == Command::Combat) then
-          combatResult = @game.developCombat()
+          combatResult = @game.develop_combat()
           case combatResult
             when NapakalakiGame::CombatResult::WINGAME then 
-              puts "\n\n       " + currentPlayer.getName()
+              puts "\n\n       " + currentPlayer.get_name()
               puts "\n\n HAS GANADO LA PARTIDA"
               #break estÃ¡ implÃ­cito            
             when NapakalakiGame::CombatResult::WIN then
@@ -75,7 +75,7 @@ module Test
             begin #Hasta que se avance de turno 
               puts "******* ******* ******* ******* ******* ******* *******"
               puts "\n\n Turno de: " + currentPlayer.to_s()
-              if currentPlayer.canISteal then
+              if currentPlayer.can_i_steal() then
                 command = getCommandAfterFighting()
               else
                 command = getCommandAfterFightingNoSteal()
@@ -159,16 +159,16 @@ module Test
      
     begin #Se descartan tesoros hasta que se vuelve al menÃƒÂº anterior
       if visible then
-        howMany = showTreasures("Elige tesoros visibles para descartar", aPlayer.getVisibleTreasures(), true)
+        howMany = showTreasures("Elige tesoros visibles para descartar", aPlayer.get_visible_treasures(), true)
       else 
-        howMany = showTreasures("Elige tesoros ocultos para descartar", aPlayer.getHiddenTreasures(), true)
+        howMany = showTreasures("Elige tesoros ocultos para descartar", aPlayer.get_hidden_treasures(), true)
       end
       option = getTreasure (howMany)
       if (option > -1) then 
         if visible then
-          @game.discardVisibleTreasures ([aPlayer.getVisibleTreasures().at(option)])
+          @game.discard_visible_treasures ([aPlayer.get_visible_treasures().at(option)])
         else
-          @game.discardHiddenTreasures ([aPlayer.getHiddenTreasures().at(option)])          
+          @game.discard_hidden_treasures ([aPlayer.get_hidden_treasures().at(option)])          
         end
       end
     end while (option != -1)  
@@ -177,10 +177,10 @@ module Test
   def manageMakeTreasureVisible (aPlayer)
        
     begin #Se hacen tesoros visibles hasta que se vuelve al menÃƒÂº anterior
-      howMany = showTreasures("Elige tesoros para intentar hacerlos visibles", aPlayer.getHiddenTreasures(), true)
+      howMany = showTreasures("Elige tesoros para intentar hacerlos visibles", aPlayer.get_hidden_treasures(), true)
       option = getTreasure (howMany);
       if (option > -1) then
-        aPlayer.makeTreasureVisible (aPlayer.getHiddenTreasures()[option])
+        aPlayer.make_treasures_visible (aPlayer.get_hidden_treasures()[option])
       end
     end while (option != -1)
   end
@@ -226,15 +226,15 @@ module Test
 #        gets
       when  Command::ShowMonster then 
         puts "\n------- ------- ------- ------- ------- ------- ------- "
-        puts "El monstruo actual es:\n\n" + @game.getCurrentMonster().to_s()
+        puts "El monstruo actual es:\n\n" + @game.get_current_monster().to_s()
 #        puts "pulsa enter para seguir"
 #        gets
       when Command::ShowVisibleTreasure then
-        showTreasures("Esta es tu lista de tesoros visibles", aPlayer.getVisibleTreasures(), false)
+        showTreasures("Esta es tu lista de tesoros visibles", aPlayer.get_visible_treasures(), false)
 #        puts "pulsa enter para seguir"
 #        gets
       when Command::ShowHiddenTreasure then
-        showTreasures("Esta es tu lista de tesoros ocultos", aPlayer.getHiddenTreasures(), false)
+        showTreasures("Esta es tu lista de tesoros ocultos", aPlayer.get_hidden_treasures(), false)
 #        puts "pulsa enter para seguir"
 #        gets
       when Command::MakeTreasureVisible then
@@ -250,16 +250,16 @@ module Test
 #        puts "pulsa enter para seguir"
 #        gets
       when Command::DiscardAll then
-        aPlayer.discardAllTreasures
+        aPlayer.discard_all_treasures()
       when Command::StealTreasure then
-        aTreasure = aPlayer.stealTreasure;
+        aTreasure = aPlayer.steal_treasure();
         if aTreasure == nil
           puts "\n\n No has podido robar nada \n\n"
         else
           puts "\n\n Has robado este tesoro: \n\n #{aTreasure.to_s}"
         end
       when Command::NextTurn then
-        if ! @game.nextTurn() then
+        if ! @game.next_turn() then
           puts "\n\n ERROR \n"
           puts "No cumples las condiciones para pasar de turno."
           puts "O bien tienes mas de 4 tesoros ocultos"

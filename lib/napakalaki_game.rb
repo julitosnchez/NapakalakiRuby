@@ -5,6 +5,7 @@
 require_relative 'napakalaki.rb'
 require_relative 'test.rb'
 
+
 module NapakalakiGame
     class EjemploMain
    

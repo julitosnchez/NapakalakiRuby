@@ -2,6 +2,8 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 require 'singleton'
+require 'player.rb'
+include Napakalaki::Player
 
 module Napakalaki
   class Napakalaki
@@ -19,7 +21,8 @@ module Napakalaki
     #Vamos añadiendo los jugadores
     names.each { |n|
     
-      @players.push(Player.new(n))
+      cplayer = Player.new(n)
+      @players.push(cplayer)
       
     }
   end
