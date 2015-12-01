@@ -9,6 +9,10 @@ require_relative 'combat_result.rb'
 require_relative 'dice.rb'
 
 module Napakalaki
+require_relative 'monster.rb' 
+require_relative 'bad_consequence.rb'
+require_relative 'combat_result'
+
   
 class Player
   @@MAX_LEVEL = 10
@@ -34,6 +38,10 @@ class Player
   
   def get_hidden_treasures()
     @hidden_treasures
+  end
+  
+  def can_i_steal
+    @can_i_steal
   end
   
   def combat(m)
@@ -84,7 +92,7 @@ class Player
   
   def valid_state()
     b = false
-    if @pending_bad_consequence.is_empty() && hidden_treasures.length <= 4
+    if @pending_bad_consequence.nil? || (@pending_bad_consequence.is_empty? && hidden_treasures.length <= 4)
         b = true
     end
     b
@@ -120,7 +128,7 @@ class Player
 =end  
   
   def steal_treasure()
-    can_i = @can_i_steal
+    can_i = can_i_steal()
     if(can_i)
       can_you = @enemy.can_you_give_me_a_treasure()
       if(can_you)
@@ -129,6 +137,7 @@ class Player
         have_stolen()
       end
     end
+    treasure
   end
   
   def set_enemy(enmy)
@@ -136,14 +145,18 @@ class Player
   end
   
   def discard_all_treasures()
-    @visible_treasures.each { |visible_treasure|  
-      treasure = visible_treasure
-      self.discard_visible_treasure()
+    vt = @visible_treasures
+    ht = @hidden_treasures
+    
+    lengthvt = vt.length()
+    lengthht = ht.length()
+     
+    lengthvt.each { |visible_treasure|  
+      self.discard_visible_treasure(vt.visible_treasures)
     }
     
-    @hidden_treasures.each { |hidden_treasure| 
-      treasure = hidden_treasure
-      self.discard_hidden_treasures(treasure)
+    lengthht.each { |hidden_treasure| 
+      self.discard_hidden_treasures(ht.hidden_treasures)
     }
   end
   
@@ -171,7 +184,7 @@ class Player
   end
   
   def decrement_levels(l)
-    if @level-l >= 1
+    if @level-l > 1
       @level = @level -l
     end
   end
@@ -211,7 +224,7 @@ class Player
       how_many_visible_treasures(t.get_type())!=2 && how_many_visible_treasures(TreasureKind::BOTHHANDS) == 0
     else
       if(t.get_type() == TreasureKind::BOTHHANDS)
-          how_many_visible_treasures(TreasureKind::ONEHAND) == 0 && how_many_visible_treasures(TreasureKind::BOTHHANDS)
+          how_many_visible_treasures(TreasureKind::ONEHAND) == 0 && how_many_visible_treasures(TreasureKind::BOTHHANDS) == 0
       else
           how_many_visible_treasures(t.get_type()) == 0
       end
@@ -225,6 +238,7 @@ class Player
         contador = contador + 1
       end
     }
+    contador
   end
   
   def dielf_no_treasures()
@@ -235,15 +249,18 @@ class Player
   
   def give_me_a_treasure()
    random = Random.new
-   @hidden_treasures.at(random.rand(@hidden_treasures.length))
+   x = random.rand(@hidden_treasures.length)
+   t = @hidden_treasures.x
+   @hidden_treasures.delete(x)
+   t
   end
   
   def can_you_give_me_a_treasure()
-    @visible_treasures.empty?
+    @hidden_treasures.empty? == false
   end
   
   def have_stolen()
-    @can_i_steeal = false
+    @can_i_steal = false
   end
   
  end
