@@ -75,6 +75,7 @@ class Player
     if(@pending_bad_consequence.nil? != false)
       if(@pending_bad_consequence.empty? != false)
         @pending_bad_consequence.substract_visible_treasures(t)
+      end
     end
     dielf_no_treasures()
   end
@@ -84,6 +85,7 @@ class Player
     if(@pending_bad_consequence.nil? != false)
       if(@pending_bad_consequence.empty? != false)
       @pending_bad_consequence.substract_hidden_treasure(t)
+      end
     end
     dielf_no_treasures()
   end
