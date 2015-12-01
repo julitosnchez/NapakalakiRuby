@@ -160,6 +160,13 @@ class Player
       discard_visible_treasure(vt.at(0))
     end
     
+    for i in 0..lengthht
+      discard_hidden_treasure(ht.at(0))
+    end
+    
+  end
+  
+  def to_s()
     "#{@name}"
   end
   
@@ -184,16 +191,7 @@ class Player
     if @level+l < @@MAX_LEVEL
       @level = @level+l
     else
-    for i in 0..lengthvt
-      discard_visible_treasure(vt.at(0))
-    end
-    
-    for i in 0..lengthht
-      discard_hidden_treasure(ht.at(0))
-    end
-  end
-  
-  def to_s
+      @level = @@MAX_LEVEL
     end
   end
   
