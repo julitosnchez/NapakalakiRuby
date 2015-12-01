@@ -46,17 +46,17 @@ class Player
   
   def combat(m)
     my_level = get_combat_level()
-    monster_level = m.get_combat_level()
+    monster_level = m.combat_level
     
-    if(my_level>monster_level)
+    if(my_level > monster_level)
       apply_prize(m)
       if(@level >= @@MAX_LEVEL)
-        combat_result = CombatResult::WINGNAME
+       combat_result = CombatResult::WINGNAME
       else
         combat_result = CombatResult::WIN
-      end
-    else
-      apply_bad_consequenc(m)
+     end
+   else
+     apply_bad_consequence(m)
       combat_result = CombatResult::LOSE
     end
     return combat_result
@@ -183,9 +183,8 @@ class Player
     comb_lev = comb_lev + @level
     if comb_lev > @@MAX_LEVEL
       comb_lev = @@MAX_LEVEL
-    return comb_lev
-    
     end
+    return comb_lev
   end
   
   def increment_levels(l)

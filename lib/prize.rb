@@ -15,6 +15,10 @@ class Prize
     @level
   end
   
+  def get_treasures()
+    @treasures
+  end
+  
   def to_s()
     "Tesoros ganados: #{@treasures}\nNiveles ganados: #{@level}"
   end
