@@ -6,7 +6,6 @@ require 'singleton'
 module Napakalaki
   class Napakalaki
     include Singleton
-   # @@instance = Napakalaki.instance
   
   attr_reader :current_monster,:current_player,:players,:dealer
   
