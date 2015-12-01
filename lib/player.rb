@@ -78,7 +78,7 @@ class Player
     @visible_treasures.delete(t)
     if(@pending_bad_consequence.nil? == false)
       if(@pending_bad_consequence.is_empty() == false)
-        @pending_bad_consequence.substract_visible_treasures(t)
+        @pending_bad_consequence.substract_visible_treasure(t)
       end
     end
     dielf_no_treasures()
