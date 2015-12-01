@@ -2,12 +2,13 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
-# ¿ES NECESARIO LO DE MODULE? ¿SE PUEDEN DEVOLVER OBJETOS LOCALES?
 
 module Napakalaki
   
 class Player
   @@MAX_LEVEL = 10
+  
+  attr_reader :name,:level,:dead,:can_i_steal,:visible_treasures,:hidden_treasures
   
   def initialize(name)
     @name = name
@@ -16,8 +17,6 @@ class Player
     @can_i_steal = true
     @visible_treasures = Array.new
     @hidden_treasures = Array.new
-    @pending_bad_consequence
-    @enemy
   end
   
   def get_name()
