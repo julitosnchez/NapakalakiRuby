@@ -20,7 +20,7 @@ module Napakalaki
     end
     #Consultor
     def get_levels_gained()
-      @prize.level
+      @prize.levels()
     end
     
     def get_BC()

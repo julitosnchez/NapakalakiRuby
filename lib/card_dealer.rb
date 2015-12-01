@@ -20,6 +20,9 @@ class CardDealer
   private #A partir de aquí, todo lo que viene acontinuación es privado
   def init_treasure_card_deck()
     
+    #Creamos los dos arrays
+    @unused_treasures = Array.new
+    @used_treasures = Array.new
     
     @unused_treasures << Treasure.new('Si mi amo',4,[TreasureKind::HELMET])
     
@@ -89,7 +92,9 @@ end
   
   def init_monster_card_deck()
     
-
+  @unused_monsters = Array.new
+  @used_monsters = Array.new
+    
   #EL REY ROSA
   prize = Prize.new(4,2) 
   bad_consequence = BadConsequence.new_level_number_of_treasures('Pierdes 5 niveles y 3 tesoros visibles',5 , 3, 0)
@@ -217,34 +222,39 @@ end
       @used_treasures.each { |item|  
         @unused_treasures << item
       }
+      
       shuffle_treasures()
       
       @used_treasures.clear
-      end
+    end
       
     t = @unused_treasures.at(0)
     
     @used_treasures << t
     
     @unused_treasures.delete(t)
+    
+    return t
   end
   
   def next_monster()
-     if(@unused_monsters.empty?)
+    
+    if(@unused_monsters.empty?)
       @used_monsters.each { |item|  
         @unused_monsters << item
       }
-      shuffle_treasures()
+      shuffle_monsters()
       
       @used_monsters.clear
-      end
+    end
       
-    t = @unused_monsters.at(0)
+    m = @unused_monsters.at(0)
     
-    @used_monsters << t
+    @used_monsters << m
     
-    @unused_monsters.delete(t)
+    @unused_monsters.delete(m)
     
+    return m
   end
   
   def give_treasure_back(t)
@@ -256,11 +266,6 @@ end
   end
   
   def init_cards()
-    @used_monsters = Array.new
-    @used_treasures = Array.new
-    @unused_treasures = Array.new
-    @unused_monsters = Array.new
-    
     init_monster_card_deck()
     init_treasure_card_deck()
   end

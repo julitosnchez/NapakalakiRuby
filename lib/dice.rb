@@ -11,7 +11,7 @@ module Napakalaki
     def next_number()
       random = Random.new
       rnd = random.rand(6)+1
-      rnd
+      return rnd
     end
   end
   

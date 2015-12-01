@@ -5,13 +5,20 @@
 
 class Prize
   attr_reader :treasures,:level
+  
   def initialize(treasures,level)
     @treasures = treasures
     @level = level
   end
   
+  def levels()
+    @level
+  end
+  
   def to_s()
     "Tesoros ganados: #{@treasures}\nNiveles ganados: #{@levels}"
   end
+  
+  
 end
 

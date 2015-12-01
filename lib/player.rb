@@ -28,11 +28,11 @@ class Player
     @name
   end
   
-  def get_visible_treasures
+  def get_visible_treasures()
     @visible_treasures
   end
   
-  def get_hidden_treasures
+  def get_hidden_treasures()
     @hidden_treasures
   end
   
