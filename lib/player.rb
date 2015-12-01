@@ -256,7 +256,7 @@ class Player
   end
   
   def dielf_no_treasures()
-    if @visible_treasures.empty? && @hidden_treasures.empty?
+    if @visible_treasures == [] && @hidden_treasures == []
       @dead = true 
     end
   end
@@ -271,7 +271,7 @@ class Player
   end
   
   def can_you_give_me_a_treasure()
-    return @hidden_treasures.empty? == false
+    return @hidden_treasures != []
   end
   
   def have_stolen()
