@@ -242,13 +242,11 @@ class Player
   def can_make_treasure_visible(t)
     if(t.get_type() == TreasureKind::ONEHAND)
       return how_many_visible_treasures(t.get_type())!=2 && how_many_visible_treasures(TreasureKind::BOTHHANDS) == 0
-    else
-      if(t.get_type() == TreasureKind::BOTHHANDS)
-          return how_many_visible_treasures(TreasureKind::ONEHAND) == 0 && how_many_visible_treasures(TreasureKind::BOTHHANDS) == 0
-      else
-          return how_many_visible_treasures(t.get_type()) == 0
-      end
     end
+    if(t.get_type() == TreasureKind::BOTHHANDS)
+          return how_many_visible_treasures(TreasureKind::ONEHAND) == 0 && how_many_visible_treasures(TreasureKind::BOTHHANDS) == 0
+    end      
+    return how_many_visible_treasures(t.get_type()) == 0
   end
   
   def how_many_visible_treasures(t_kind)
