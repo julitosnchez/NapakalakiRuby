@@ -156,6 +156,10 @@ class Player
     }
   end
   
+  def to_s()
+    puts "#{@name}"
+  end
+  
   private
   def bring_to_life()
     @dead = false

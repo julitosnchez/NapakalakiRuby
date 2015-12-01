@@ -151,7 +151,7 @@ Se encarga de solicitar a CardDealer la inicialización de los mazos de cartas d
   
   def next_turn()
     
-    state_ok = nex_turn_is_allowed()
+    state_ok = next_turn_is_allowed()
     dealer = CardDealer.instance
     
     if(state_ok)
