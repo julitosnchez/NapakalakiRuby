@@ -8,6 +8,8 @@ require_relative 'test.rb'
 
 module NapakalakiGame
     class EjemploMain
+      include Singleton
+      public_class_method :new
    
       def prueba
         
