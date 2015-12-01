@@ -28,6 +28,10 @@ class Player
     @name
   end
   
+  def self.MAX_LEVEL()
+    return @@MAX_LEVEL
+  end
+  
   def get_visible_treasures()
     @visible_treasures
   end
@@ -47,15 +51,15 @@ class Player
     if(my_level > monster_level)
       apply_prize(m)
       if(@level >= @@MAX_LEVEL)
-        combat_result = CombatResult::WINGNAME
+       combat_result = CombatResult::WINGNAME
       else
         combat_result = CombatResult::WIN
-      end
-    else
-      apply_bad_consequence(m)
+     end
+   else
+     apply_bad_consequence(m)
       combat_result = CombatResult::LOSE
     end
-    combat_result
+    return combat_result
   end
   
   def make_treasures_visible(t)
@@ -67,31 +71,34 @@ class Player
   end
   
   def is_dead()
-    @dead
+    return @dead
   end
   
   def discard_visible_treasure(t)
     @visible_treasures.delete(t)
-    if(!@pending_bad_consequence.nil? && !@pending_bad_consequence.empty?)
-      @pending_bad_consequence.substract_visible_treasures(t)
+    if(@pending_bad_consequence.nil? != false)
+      if(@pending_bad_consequence.empty? != false)
+        @pending_bad_consequence.substract_visible_treasures(t)
+      end
     end
     dielf_no_treasures()
   end
   
   def discard_hidden_treasure(t)
      @hidden_treasures.delete(t)
-    if(!@pending_bad_consequence.nil? && !@pending_bad_consequence.empty?)
+    if(@pending_bad_consequence.nil? != false)
+      if(@pending_bad_consequence.empty? != false)
       @pending_bad_consequence.substract_hidden_treasure(t)
+      end
     end
     dielf_no_treasures()
   end
   
   def valid_state()
-    b = false
-    if @pending_bad_consequence.nil? || (@pending_bad_consequence.is_empty? && hidden_treasures.length <= 4)
-        b = true
+    if @pending_bad_consequence.nil? || (@pending_bad_consequence.is_empty() && hidden_treasures.length <= 4)
+        return true
     end
-    b
+    return false
   end
   
   #Cuando un jugador está en su primer turno o se ha quedado sin tesoros, hay que
@@ -100,6 +107,7 @@ class Player
   def init_treasures()
     dealer = CardDealer.instance
     dice = Dice.instance
+    
     bring_to_life()
     treasure = dealer.next_treasure()
     @hidden_treasures << treasure
@@ -124,6 +132,7 @@ class Player
 =end  
   
   def steal_treasure()
+    
     can_i = can_i_steal()
     if(can_i)
       can_you = @enemy.can_you_give_me_a_treasure()
@@ -133,7 +142,7 @@ class Player
         have_stolen()
       end
     end
-    treasure
+   return treasure
   end
   
   def set_enemy(enmy)
@@ -144,19 +153,13 @@ class Player
     vt = @visible_treasures
     ht = @hidden_treasures
     
-    lengthvt = vt.length
-    lengthht = ht.length
-    
+    lengthvt = vt.length()
+    lengthht = ht.length()
+     
     for i in 0..lengthvt
       discard_visible_treasure(vt.at(0))
     end
     
-    for i in 0..lengthht
-      discard_hidden_treasure(ht.at(0))
-    end
-  end
-  
-  def to_s
     "#{@name}"
   end
   
@@ -181,7 +184,16 @@ class Player
     if @level+l < @@MAX_LEVEL
       @level = @level+l
     else
-      @level = @@MAX_LEVEL
+    for i in 0..lengthvt
+      discard_visible_treasure(vt.at(0))
+    end
+    
+    for i in 0..lengthht
+      discard_hidden_treasure(ht.at(0))
+    end
+  end
+  
+  def to_s
     end
   end
   
@@ -225,12 +237,12 @@ class Player
   
   def can_make_treasure_visible(t)
     if(t.get_type() == TreasureKind::ONEHAND)
-      how_many_visible_treasures(t.get_type())!=2 && how_many_visible_treasures(TreasureKind::BOTHHANDS) == 0
+      return how_many_visible_treasures(t.get_type())!=2 && how_many_visible_treasures(TreasureKind::BOTHHANDS) == 0
     else
       if(t.get_type() == TreasureKind::BOTHHANDS)
-          how_many_visible_treasures(TreasureKind::ONEHAND) == 0 && how_many_visible_treasures(TreasureKind::BOTHHANDS) == 0
+          return how_many_visible_treasures(TreasureKind::ONEHAND) == 0 && how_many_visible_treasures(TreasureKind::BOTHHANDS) == 0
       else
-          how_many_visible_treasures(t.get_type()) == 0
+          return how_many_visible_treasures(t.get_type()) == 0
       end
     end
   end
@@ -238,11 +250,11 @@ class Player
   def how_many_visible_treasures(t_kind)
     contador = 0
     @visible_treasures.each { |iter|
-      if iter == t_kind
+      if iter.get_type() == t_kind
         contador = contador + 1
       end
     }
-    contador
+    return contador
   end
   
   def dielf_no_treasures()
@@ -254,13 +266,14 @@ class Player
   def give_me_a_treasure()
    random = Random.new
    x = random.rand(@hidden_treasures.length)
-   t = @hidden_treasures.x
+   t = @hidden_treasures.at(x)
    @hidden_treasures.delete(x)
-   t
+   
+   return t
   end
   
   def can_you_give_me_a_treasure()
-    @hidden_treasures.empty? == false
+    return @hidden_treasures.empty? == false
   end
   
   def have_stolen()
