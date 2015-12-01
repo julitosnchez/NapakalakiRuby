@@ -171,7 +171,7 @@ class Player
   end
   
   def to_s()
-    "#{@name}"
+    "#{@name}--> nivel de combate #{get_combat_level()}"
   end
   
   private
@@ -218,9 +218,11 @@ class Player
     
     if(n_treasures > 0)
       dealer = CardDealer.instance
-      for i in 0..n_treasures 
+      i = 0
+      while(i<n_treasures && @hidden_treasures.length<4)
         treasure = dealer.next_treasure()
         @hidden_treasures << treasure
+        i = i+1
       end
     end
   end
