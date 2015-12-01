@@ -8,7 +8,7 @@ module Napakalaki
   
   class BadConsequence
     #Declaración de arrays
-    attr_accessor :text,:levels,:n_visible_treasures,:n_hidden_treasures,:death
+    attr_accessor :text,:levels,:n_visible_treasures,:n_hidden_treasures,:death,:specific_hidden_treasures,:specific_visible_treasures
     @@MAX_TREASURES = 10
     @specific_hidden_treasures = Array.new
     @specific_visible_treasures = Array.new
@@ -123,7 +123,7 @@ module Napakalaki
             nhidden = @n_hidden_treasures
           end
         end
-        bc = BadConsequence.new_level_specific_treasures(@text,0,nvisible,nhidden)
+        bc = BadConsequence.new_level_number_of_treasures(@text,0,nvisible,nhidden)
       else
         visible_treasures = Array.new
         hidden_treasures = Array.new

@@ -140,7 +140,7 @@ class Player
            random = Random.new
            x = random.rand(@enemy.hidden_treasures.length)
            t  = @enemy.hidden_treasures.at(x)
-           @enemy.hidden_treasures.delete(x)
+           @enemy.hidden_treasures.delete(t)
         treasure = t
         @hidden_treasures << treasure
         have_stolen()
