@@ -7,7 +7,7 @@ module Napakalaki
 
 class CardDealer
   include Singleton
-  @@instance = CardDealer.instance
+
   @unused_monsters = Array.new
   @used_monsters = Array.new
   @used_treasures = Array.new
