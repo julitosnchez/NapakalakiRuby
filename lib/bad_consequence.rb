@@ -2,6 +2,7 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 require_relative 'treasure_kind.rb'
+require_relative 'treasure.rb'
 
 module Napakalaki
   
@@ -142,7 +143,7 @@ module Napakalaki
             end
           }
         end
-        bc = BadConsequence.new(@text,0,visible_treasures,hidden_treasures)
+        bc = BadConsequence.new_level_specific_treasures(@text,0,visible_treasures,hidden_treasures)
       end
       
       return bc

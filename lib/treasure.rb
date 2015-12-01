@@ -22,6 +22,10 @@ module Napakalaki
     def get_name()
       @name
     end
+    
+    def to_s
+    "#{@name}, #{@bonus}, #{@type} "
+    end
   
   end
 end

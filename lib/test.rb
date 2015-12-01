@@ -62,16 +62,16 @@ module Test
         if (command == Command::Combat) then
           combatResult = @game.develop_combat()
           case combatResult
-            when NapakalakiGame::CombatResult::WINGAME then 
+            when Napakalaki::CombatResult::WINGNAME then 
               puts "\n\n       " + currentPlayer.get_name()
               puts "\n\n HAS GANADO LA PARTIDA"
-              #break estÃ¡ implÃ­cito            
-            when NapakalakiGame::CombatResult::WIN then
+              #break estÃ¡ implÃ cito            
+            when Napakalaki::CombatResult::WIN then
               puts "\n\n Ganaste el combate"
-            when NapakalakiGame::CombatResult::LOSE then
+            when Napakalaki::CombatResult::LOSE then
               puts "\n\n Has perdido el combate, te toca cumplir el mal rollo"
            end #case
-           if (combatResult != NapakalakiGame::CombatResult::WINGAME) then
+           if (combatResult != Napakalaki::CombatResult::WINGNAME) then
             begin #Hasta que se avance de turno 
               puts "******* ******* ******* ******* ******* ******* *******"
               puts "\n\n Turno de: " + currentPlayer.to_s()

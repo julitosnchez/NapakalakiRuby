@@ -42,9 +42,9 @@ class Player
   
   def combat(m)
     my_level = get_combat_level()
-    monster_level = m.get_combat_level()
+    monster_level = m.combat_level
     
-    if(my_level>monster_level)
+    if(my_level > monster_level)
       apply_prize(m)
       if(@level >= @@MAX_LEVEL)
         combat_result = CombatResult::WINGNAME
@@ -52,13 +52,13 @@ class Player
         combat_result = CombatResult::WIN
       end
     else
-      apply_bad_consequenc(m)
+      apply_bad_consequence(m)
       combat_result = CombatResult::LOSE
     end
     combat_result
   end
   
-  def make_treasure_visible(t)
+  def make_treasures_visible(t)
     can_i = can_make_treasure_visible(t)
     if (can_i)
       @visible_treasures << t
@@ -144,44 +144,52 @@ class Player
     vt = @visible_treasures
     ht = @hidden_treasures
     
-    lengthvt = vt.length()
-    lengthht = ht.length()
-     
-    lengthvt.each { |visible_treasure|  
-      self.discard_visible_treasure(vt.visible_treasures)
-    }
+    lengthvt = vt.length
+    lengthht = ht.length
     
-    lengthht.each { |hidden_treasure| 
-      self.discard_hidden_treasures(ht.hidden_treasures)
-    }
+    for i in 0..lengthvt
+      discard_visible_treasure(vt.at(0))
+    end
+    
+    for i in 0..lengthht
+      discard_hidden_treasure(ht.at(0))
+    end
+  end
+  
+  def to_s
+    "#{@name}"
   end
   
   private
   def bring_to_life()
     @dead = false
   end
-  
+
   def get_combat_level()
     comb_lev = 0
-    @visible_treasure.each { |iter|  
-      comb_lev = comb_lev + iter.bonus
+    @visible_treasures.each { |iter|  
+      comb_lev = comb_lev + iter.get_bonus()
     }
     comb_lev = comb_lev + @level
     if comb_lev > @@MAX_LEVEL
       comb_lev = @@MAX_LEVEL
-    comb_lev
     end
+    return comb_lev
   end
-  
+
   def increment_levels(l)
     if @level+l < @@MAX_LEVEL
       @level = @level+l
+    else
+      @level = @@MAX_LEVEL
     end
   end
   
   def decrement_levels(l)
     if @level-l > 1
       @level = @level -l
+    else
+      @level = 1
     end
   end
   
