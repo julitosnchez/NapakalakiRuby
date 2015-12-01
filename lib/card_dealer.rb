@@ -2,6 +2,13 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 require 'singleton'
+require_relative 'prize.rb'
+require_relative 'bad_consequence.rb'
+require_relative 'treasure.rb'
+require_relative 'treasure_kind.rb'
+
+
+# encoding: utf-8
 
 module Napakalaki
 
@@ -46,7 +53,7 @@ class CardDealer
     
     @unused_treasures << Treasure.new('Insecticida',2,[TreasureKind::ONEHAND])
     
-    @unused_treasures << Treasure.new('Escopeta de 3 cañones',4,[TreasureKind::BOTHHANDS])
+    @unused_treasures << Treasure.new('Escopeta de 3 canones',4,[TreasureKind::BOTHHANDS])
     
     @unused_treasures << Treasure.new('Garabato mistico',2,[TreasureKind::ONEHAND])
     
@@ -77,6 +84,8 @@ class CardDealer
     @unused_treasures << Treasure.new('Tentaculo de pega',2,[TreasureKind::ARMOR])
     
     @unused_treasures << Treasure.new('Zapato deja-amigos',1,[TreasureKind::SHOES])
+    
+    shuffle_treasures()
     
 end
   
@@ -178,6 +187,8 @@ end
   prize = Prize.new(1, 1)
   bad_consequence = BadConsequence.new_level_specific_treasures('Te faltan manos para tanta cabeza.Pierdes 3 niveles y tus tesoros visibles de las manos', 3, [TreasureKind::BOTHHANDS], [])
   @unused_monsters << Monster.new('Bicefalo ',20, bad_consequence, prize)
+  
+    shuffle_monsters()
   
  end
   

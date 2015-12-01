@@ -5,6 +5,7 @@ require 'singleton'
 require_relative 'player.rb'
 require_relative 'card_dealer.rb'
 require_relative 'combat_result.rb'
+require_relative 'monster.rb'
 
 module Napakalaki
   class Napakalaki
