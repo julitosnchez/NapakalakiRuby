@@ -198,7 +198,7 @@ end
   
   def shuffle_treasures()
     random = Random.new
-    for i in 0..@unused_treasures.length
+    for i in 0..@unused_treasures.length-1
       aux = @unused_treasures.at(i)
       rnd = random.rand(@unused_treasures.length)
       @unused_treasures[i] = @unused_treasures[rnd]
@@ -208,7 +208,7 @@ end
   
   def shuffle_monsters()
     random = Random.new
-    for i in 0..@unused_monsters.length
+    for i in 0..@unused_monsters.length-1
       aux = @unused_monsters.at(i)
       rnd = random.rand(@unused_monsters.length)
       @unused_monsters[i] = @unused_monsters[rnd]
