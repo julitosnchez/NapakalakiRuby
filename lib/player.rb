@@ -124,8 +124,10 @@ class Player
   end
   
   def valid_state()
+
     if @pending_bad_consequence.nil? || (@pending_bad_consequence.is_empty() && @hidden_treasures.length <= 4)
       return true
+
     end
     return false
   end
@@ -200,8 +202,7 @@ class Player
   end
   
   def to_s()
-    
-   "#{@name}--> nivel de combate #{get_combat_level()}"
+     "#{@name}--> nivel de combate #{get_combat_level()}"
   end
   
   private
@@ -315,4 +316,7 @@ class Player
   end
 end
 
+
+    
+  
 
