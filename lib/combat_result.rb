@@ -8,6 +8,7 @@ module Napakalaki
       WINGNAME = :wing_name
       WIN = :win
       LOSE = :lose
+      LOSEANDCONVERT = :lose_and_convert
   end
   
 end

@@ -15,7 +15,7 @@ module Napakalaki
 class CardDealer
   include Singleton
 
-  attr_reader :used_monsters,:used_treasures,:unused_treasures,:unused_monsters
+  attr_reader :used_monsters,:used_treasures,:unused_treasures,:unused_monsters, :unused_cultists
   
   private #A partir de aquí, todo lo que viene acontinuación es privado
   def init_treasure_card_deck()
@@ -195,10 +195,17 @@ end
     shuffle_monsters()
   
  end
+  def shuffle_cultists()
+    
+  end
+  
+  def init_cultist_card_deck()
+    
+  end
   
   def shuffle_treasures()
     random = Random.new
-    for i in 0..@unused_treasures.length
+    for i in 0..@unused_treasures.length-1
       aux = @unused_treasures.at(i)
       rnd = random.rand(@unused_treasures.length)
       @unused_treasures[i] = @unused_treasures[rnd]
@@ -208,7 +215,7 @@ end
   
   def shuffle_monsters()
     random = Random.new
-    for i in 0..@unused_monsters.length
+    for i in 0..@unused_monsters.length-1
       aux = @unused_monsters.at(i)
       rnd = random.rand(@unused_monsters.length)
       @unused_monsters[i] = @unused_monsters[rnd]
@@ -255,6 +262,10 @@ end
     @unused_monsters.delete(m)
     
     return m
+  end
+  
+  def next_cultist()
+    
   end
   
   def give_treasure_back(t)

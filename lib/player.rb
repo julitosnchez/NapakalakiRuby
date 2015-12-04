@@ -13,8 +13,8 @@ module Napakalaki
 class Player
   @@MAX_LEVEL = 10
   
-  attr_reader :name,:level,:dead,:can_i_steal,:visible_treasures,:hidden_treasures
-  
+  attr_reader :name,:level,:dead,:can_i_steal,:visible_treasures,:hidden_treasures,:enemy
+  protected @enemy
   def initialize(name)
     @name = name
     @level = 1
@@ -24,8 +24,33 @@ class Player
     @hidden_treasures = Array.new
   end
   
+  def self.Player(p)
+    @name = p.get_name()
+    @level = p.get_level()
+    @dead = p.is_dead()
+    @can_i_steal = p.can_i_steal()
+    @visible_treasures = p.get_visible_treasures()
+    @hidden_treasures = p.get_hidden_treasures()
+  end
+  protected
+  def get_oponent_level(m)
+    
+  end
+  
+  def should_convert()
+    
+  end
+  
+  def get_combat_level()
+    
+  end
+  public
   def get_name()
     @name
+  end
+  
+  def get_level()
+    @level
   end
   
   def self.MAX_LEVEL()
@@ -50,7 +75,7 @@ class Player
     
     if(my_level > monster_level)
       apply_prize(m)
-      if(@level >= @@MAX_LEVEL)
+      if(get_combat_level() >= @@MAX_LEVEL)
        combat_result = CombatResult::WINGNAME
       else
         combat_result = CombatResult::WIN
@@ -82,7 +107,7 @@ class Player
     @visible_treasures.delete(t)
     if(@pending_bad_consequence.nil? == false)
       if(@pending_bad_consequence.is_empty() == false)
-        @pending_bad_consequence.substract_visible_treasures(t)
+        @pending_bad_consequence.substract_visible_treasure(t)
       end
     end
     dielf_no_treasures()
@@ -100,7 +125,7 @@ class Player
   
   def valid_state()
     if @pending_bad_consequence.nil? || (@pending_bad_consequence.is_empty() && @hidden_treasures.length <= 4)
-        return true
+      return true
     end
     return false
   end
@@ -175,6 +200,7 @@ class Player
   end
   
   def to_s()
+    
    "#{@name}--> nivel de combate #{get_combat_level()}"
   end
   
@@ -196,7 +222,7 @@ class Player
   end
 
   def increment_levels(l)
-    if @level+l < @@MAX_LEVEL
+    if @level+l <= @@MAX_LEVEL
       @level = @level+l
     else
       @level = @@MAX_LEVEL
@@ -204,7 +230,7 @@ class Player
   end
   
   def decrement_levels(l)
-    if @level-l > 1
+    if @level-l >= 1
       @level = @level -l
     else
       @level = 1
@@ -264,7 +290,7 @@ class Player
   end
   
   def dielf_no_treasures()
-    if @visible_treasures.empty? && @hidden_treasures.empty?
+    if @visible_treasures == [] && @hidden_treasures == []
       @dead = true 
     end
   end
@@ -279,7 +305,7 @@ class Player
   end
   
   def can_you_give_me_a_treasure()
-    return @hidden_treasures.empty? == false
+    return @hidden_treasures != []
   end
   
   def have_stolen()
@@ -288,3 +314,5 @@ class Player
  
   end
 end
+
+
