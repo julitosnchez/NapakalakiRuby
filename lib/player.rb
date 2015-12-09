@@ -160,11 +160,11 @@ class Player
     lengthvt = vt.length()
     lengthht = ht.length()
      
-    for i in 0..lengthvt
+    for i in 0..lengthvt-1
       discard_visible_treasure(vt.at(0))
     end
     
-    for i in 0..lengthht
+    for i in 0..lengthht-1
       discard_hidden_treasure(ht.at(0))
     end
     
