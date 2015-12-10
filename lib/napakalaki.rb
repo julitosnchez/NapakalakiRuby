@@ -15,6 +15,7 @@ module Napakalaki
   
   
   private
+  #INICIAR JUGADORES
   def init_players(names)
     
     #Creamos array de jugadores
@@ -30,6 +31,8 @@ module Napakalaki
     
   end
   
+  #PRIVATE
+  #Decide QUÉ JUGADOR es el SIGUIENTE en jugar.
   def next_player()
     random = Random.new
     if(@current_player.nil?)
@@ -48,13 +51,17 @@ module Napakalaki
     return @current_player
   end
   
+  #PRIVATE
+  #SIGUIENTE TURNO PERMITIDO
   def next_turn_is_allowed()
-    if(@current_player.nil?)
+    if(@current_player.nil?) #current_player == null
       return true
     end
     return @current_player.valid_state()
   end
   
+  #PRIVATE
+  #MÉTODO PARA ASIGNAR ENEMIGOS DE MANERA ALEATORIA
   def set_enemies()
     random = Random.new
     
@@ -71,9 +78,8 @@ module Napakalaki
   end
   
   public
-=begin
-    El jugador actual entra en combate con el monstruo que le ha tocado
-=end
+
+  #El jugador actual entra en combate con el monstruo que le ha tocado
   def develop_combat()
     dealer = CardDealer.instance
     
@@ -83,10 +89,12 @@ module Napakalaki
     return result
   end
 =begin
+    PUBLIC
     Operación encargada de eliminar los tesoros visibles indicados de la lista de tesoros   visibles del jugador. Al eliminar esos tesoros, si el jugador tiene un mal rollo pendiente, se
     indica a éste dicho descarte para su posible actualización. Finalmente, se invoca a
     dieIfNoTreasure() para comprobar si se ha quedado sin tesoros y en ese caso pasar a
-    estado de muerto. Los tesoros descartados se devuelven al CardDealer
+    estado de muerto. Los tesoros descartados se devuelven al CardDealer.
+    treasures -> Array de Treasure
 =end
   
   def discard_visible_treasures(treasures)
@@ -98,7 +106,8 @@ module Napakalaki
     }
   end
   
-  #Similar a lo anterior
+  #PUBLIC
+  #Similar a lo anterior 
   def discard_hidden_treasures(treasures)
     dealer = CardDealer.instance
     
@@ -108,9 +117,12 @@ module Napakalaki
     }
   end
   
+  #PUBLIC
 =begin
   Operación en la que se pide al jugador actual que pase tesoros ocultos a visibles, siempre
-  que pueda hacerlo según las reglas del juego
+  que pueda hacerlo según las reglas del juego.
+  NO CONFUNDIR CON make_treasure_visible
+  treasures -> Array de Treasure
 =end
   
   def make_treasures_visible(treasures)
@@ -119,13 +131,15 @@ module Napakalaki
     }
   end
   
+  #PUBLIC
 =begin
-Se encarga de solicitar a CardDealer la inicialización de los mazos de cartas de Tesoros
+     Se encarga de solicitar a CardDealer la inicialización de los mazos de cartas de Tesoros
      y de Monstruos, de inicializar los jugadores proporcionándoles un nombre, asignarle a cada
      jugador su enemigo y de iniciar el juego con la llamada a nextTurn() para pasar al
      siguiente turno (que en este caso será el primero)
 =end
   
+  #PUBLIC
   def init_game(players)
     dealer = CardDealer.instance
     
@@ -138,17 +152,19 @@ Se encarga de solicitar a CardDealer la inicialización de los mazos de cartas d
     next_turn()
   end
   
+  #PUBLIC
   def get_current_player()
     @current_player
   end
   
+  #PUBLIC
   def get_current_monster()
     @current_monster
   end
   
+  #PUBLIC
   #Verifica si el jugador activo 
   #cumple con las reglas del juego para terminar su turno
-  
   def next_turn()
     
     state_ok = next_turn_is_allowed()
@@ -166,6 +182,7 @@ Se encarga de solicitar a CardDealer la inicialización de los mazos de cartas d
     return state_ok
   end
   
+  #PUBLIC
   def end_of_game(result)
     return result == CombatResult::WINGNAME
   end
