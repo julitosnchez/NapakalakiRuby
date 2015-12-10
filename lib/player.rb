@@ -50,7 +50,7 @@ class Player
     
     if(my_level > monster_level)
       apply_prize(m)
-      if(@level >= @@MAX_LEVEL)
+      if(get_combat_level() >= @@MAX_LEVEL)
        combat_result = CombatResult::WINGNAME
       else
         combat_result = CombatResult::WIN
@@ -160,11 +160,11 @@ class Player
     lengthvt = vt.length()
     lengthht = ht.length()
      
-    for i in 0..lengthvt
+    for i in 0..lengthvt-1
       discard_visible_treasure(vt.at(0))
     end
     
-    for i in 0..lengthht
+    for i in 0..lengthht-1
       discard_hidden_treasure(ht.at(0))
     end
     
