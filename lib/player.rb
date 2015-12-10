@@ -179,6 +179,7 @@ class Player
     @dead = false
   end
   
+  #PRIVATE
   def get_combat_level()
     comb_lev = 0
     @visible_treasures.each { |iter|  
@@ -191,6 +192,7 @@ class Player
     return comb_lev
   end
   
+  #PRIVATE
   def increment_levels(l)
     if @level+l <= @@MAX_LEVEL
       @level = @level+l
@@ -199,6 +201,7 @@ class Player
     end
   end
   
+  #PRIVATE
   def decrement_levels(l)
     if @level-l >= 1
       @level = @level -l
@@ -207,10 +210,13 @@ class Player
     end
   end
   
+  #PRIVATE
   def set_pending_bad_consequence(b)
     @pending_bad_consequence = b
   end
   
+  #PRIVATE
+  #Aplica el BUEN ROLLO del Monster m al JUGADOR
   def apply_prize(m)
     n_levels = m.get_levels_gained()
     increment_levels(n_levels)
@@ -227,10 +233,10 @@ class Player
     end
   end
   
+  #PRIVATE
   #Cuando el jugador ha perdido el combate, 
   #hay que considerar el mal rollo que le impone el
   #monstruo con el que combatió
-  
   def apply_bad_consequence(m)
     bad_consequence = m.get_BC()
     n_levels = bad_consequence.get_levels()
@@ -239,6 +245,9 @@ class Player
     set_pending_bad_consequence(pending_bad)
   end
   
+  #PRIVATE
+  #COMPRUEBA que se puede convertir TESORO OCULTO--> VISIBLE siguiendo las reglas
+  # del juego
   def can_make_treasure_visible(t)
     if(t.get_type() == TreasureKind::ONEHAND)
       return how_many_visible_treasures(t.get_type())!=2 && how_many_visible_treasures(TreasureKind::BOTHHANDS) == 0
@@ -249,6 +258,8 @@ class Player
     return how_many_visible_treasures(t.get_type()) == 0
   end
   
+  #PRIVATE
+  #CUENTA el numero de TESOROS VISIBLES de tipo TreasureKind->t_kind
   def how_many_visible_treasures(t_kind)
     contador = 0
     @visible_treasures.each { |iter|
@@ -259,12 +270,16 @@ class Player
     return contador
   end
   
+  #PRIVATE
+  #COMPRUEBA si el jugador ha MUERTO
   def dielf_no_treasures()
     if @visible_treasures == [] && @hidden_treasures == []
       @dead = true 
     end
   end
   
+  #PRIVATE
+  #COGE un TESORO OCULTO --> VISIBLE
   def give_me_a_treasure()
    random = Random.new
    x = random.rand(@hidden_treasures.length)
@@ -274,10 +289,14 @@ class Player
    return t
   end
   
+  #PRIVATE
+  #Comprueba si EXISTEN TESOROS OCULTOS para convertir a VISIBLES
   def can_you_give_me_a_treasure()
     return @hidden_treasures != []
   end
   
+  #PRIVATE
+  #El jugador YA ha ROBADO 1 VEZ, NO SE LE PERMITE MAS
   def have_stolen()
     @can_i_steal = false
   end
