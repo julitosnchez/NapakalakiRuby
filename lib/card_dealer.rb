@@ -89,7 +89,8 @@ class CardDealer
     shuffle_treasures()
     
 end
-  
+  #PRIVADO
+  #INICIA el mazo de cartas de MONSTRUOS
   def init_monster_card_deck()
     
   @unused_monsters = Array.new
@@ -195,7 +196,8 @@ end
     shuffle_monsters()
   
  end
-  
+  #PRIVADO
+  #Baraja el mazo de los TESOROS
   def shuffle_treasures()
     random = Random.new
     for i in 0..@unused_treasures.length-1
@@ -206,6 +208,8 @@ end
     end
   end
   
+  #PRIVADO
+  #BARAJAR mazo de MONSTRUOS
   def shuffle_monsters()
     random = Random.new
     for i in 0..@unused_monsters.length-1
@@ -216,7 +220,8 @@ end
     end
   end
   
-  public #A partir de aquí, todo lo que viene acontinuación es público
+  public #A partir de aquí, todo lo que viene acontinuación es públic
+  #Obtiene el SIGUIENTE TESORO
   def next_treasure()
     if(@unused_treasures.empty?)
       @used_treasures.each { |item|  
@@ -237,6 +242,8 @@ end
     return t
   end
   
+  #PUBLICO
+  #Obtiene el siguiente MONSTRUO
   def next_monster()
     
     if(@unused_monsters.empty?)
@@ -257,14 +264,20 @@ end
     return m
   end
   
+  #PUBLICO
+  #Mete el tesoro t en la BARAJA de TESOROS USADOS
   def give_treasure_back(t)
     @used_treasures << t
   end
   
+  #PUBLICO
+  #Mete el tesoro t en la BARAJA de MONSTRUOS USADOS
   def give_monster_back(m)
     @used_monsters << m
   end
   
+  #PUBLICO
+  #MÉTODO para INICIAR los dos mazos de cartas
   def init_cards()
     init_monster_card_deck()
     init_treasure_card_deck()

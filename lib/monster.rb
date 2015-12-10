@@ -14,10 +14,12 @@ module Napakalaki
       @prize = price
       @bad_consequence = bc
     end
+    
     #Método to_s
     def to_s()
       "Nombre del monstruo: #{@name}\nNivel de combate: #{@combat_level}\n#{@prize}\n#{@bad_consequence}"
     end
+    
     #Consultor
     def get_levels_gained()
       @prize.levels()
