@@ -7,7 +7,7 @@ module Napakalaki
     @@total_cultist_players=0
     attr_reader :my_cultist_card
     def initialize(p,c)
-
+      
     end
     
     private
