@@ -7,8 +7,8 @@ require_relative 'bad_consequence.rb'
 module Napakalaki
   
   class Monster
-    attr_accessor :name,:combat_level,:prize,:bad_consequence
-    @level_change_against_cultist_player = 0
+    attr_accessor :name,:combat_level,:prize,:bad_consequence,:level_change_against_cultist_player
+ 
     def initialize(name,level,bc,price, lc)
       @name = name
       @combat_level = level
@@ -29,6 +29,10 @@ module Napakalaki
     
     def get_BC()
       @bad_consequence
+    end
+    
+    def get_combat_level()
+      @combat_level
     end
     
     def get_prize()

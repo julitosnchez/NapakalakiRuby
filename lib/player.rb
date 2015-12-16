@@ -32,9 +32,10 @@ class Player
     @visible_treasures = p.get_visible_treasures()
     @hidden_treasures = p.get_hidden_treasures()
   end
+  
   protected
   def get_oponent_level(m)
-    
+    return m.get_combat_level()
   end
   
   def should_convert()
