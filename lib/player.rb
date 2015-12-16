@@ -14,7 +14,7 @@ class Player
   @@MAX_LEVEL = 10
   
   attr_reader :name,:level,:dead,:can_i_steal,:visible_treasures,:hidden_treasures,:enemy
-  
+  protected @enemy
   def initialize(name)
     @name = name
     @level = 1
@@ -24,8 +24,33 @@ class Player
     @hidden_treasures = Array.new
   end
   
+  def self.Player(p)
+    @name = p.get_name()
+    @level = p.get_level()
+    @dead = p.is_dead()
+    @can_i_steal = p.can_i_steal()
+    @visible_treasures = p.get_visible_treasures()
+    @hidden_treasures = p.get_hidden_treasures()
+  end
+  protected
+  def get_oponent_level(m)
+    
+  end
+  
+  def should_convert()
+    
+  end
+  
+  def get_combat_level()
+    
+  end
+  public
   def get_name()
     @name
+  end
+  
+  def get_level()
+    @level
   end
   
   def self.MAX_LEVEL()
@@ -56,13 +81,17 @@ class Player
         combat_result = CombatResult::WIN
      end
    else
-     apply_bad_consequence(m)
+     if m.bad_consequence.death
+       @dead = true
+     else
+       apply_bad_consequence(m)
+     end
       combat_result = CombatResult::LOSE
     end
     return combat_result
   end
   
-  def make_treasure_visible(t)
+  def make_treasures_visible(t)
     can_i = can_make_treasure_visible(t)
     if (can_i)
       @visible_treasures << t
@@ -95,8 +124,10 @@ class Player
   end
   
   def valid_state()
-    if @pending_bad_consequence.nil? || (@pending_bad_consequence.is_empty() &&  @hidden_treasures.length <= 4)
-        return true
+
+    if @pending_bad_consequence.nil? || (@pending_bad_consequence.is_empty() && @hidden_treasures.length <= 4)
+      return true
+
     end
     return false
   end
@@ -137,10 +168,10 @@ class Player
     if(can_i)
       can_you = @enemy.hidden_treasures != []
       if(can_you)
-           random = Random.new
-           x = random.rand(@enemy.hidden_treasures.length)
-           t  = @enemy.hidden_treasures.at(x)
-           @enemy.hidden_treasures.delete(t)
+        random = Random.new
+        x = random.rand(@enemy.hidden_treasures.length)
+        t  = @enemy.hidden_treasures.at(x)
+        @enemy.hidden_treasures.delete(t)
         treasure = t
         @hidden_treasures << treasure
         have_stolen()
@@ -171,7 +202,7 @@ class Player
   end
   
   def to_s()
-    "#{@name}--> nivel de combate #{get_combat_level()}"
+     "#{@name}--> nivel de combate #{get_combat_level()}"
   end
   
   private
@@ -197,7 +228,7 @@ class Player
     if @level+l <= @@MAX_LEVEL
       @level = @level+l
     else
-       @level = @@MAX_LEVEL
+      @level = @@MAX_LEVEL
     end
   end
   
@@ -300,7 +331,11 @@ class Player
   def have_stolen()
     @can_i_steal = false
   end
-  
- end
  
+  end
 end
+
+
+    
+  
+

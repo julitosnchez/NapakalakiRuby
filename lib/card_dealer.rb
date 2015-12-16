@@ -15,7 +15,7 @@ module Napakalaki
 class CardDealer
   include Singleton
 
-  attr_reader :used_monsters,:used_treasures,:unused_treasures,:unused_monsters
+  attr_reader :used_monsters,:used_treasures,:unused_treasures,:unused_monsters, :unused_cultists
   
   private #A partir de aquí, todo lo que viene acontinuación es privado
   def init_treasure_card_deck()
@@ -95,7 +95,41 @@ end
     
   @unused_monsters = Array.new
   @used_monsters = Array.new
-    
+   
+  #EL MAL INDECIBLE IMPRONUNCIABLE
+  bc = BadConsequence.new_level_specific_treasures('Pierdes 1 mano visible',0,[TreasureKind.ONEHAND],[])
+  prize = Prize.new(3,1);
+  @unusedMonsters << Monster.new('El mal indecible impronunciable',10,bad_consequence,prize,-2)
+        
+  #Testigos oculares
+  bc = BadConsequence.new_level_specific_treasures('Pierdes tus tesoros visibles. Ja ja ja.',0,[TreasureKind::ONEHAND,TreasureKind::BOTHHANDS,TreasureKind::HELMET,TreasureKind::ARMOR,TreasureKind::SHOES],[])
+  prize = Prize.new(2,1);
+  @unusedMonsters << Monster.new('Testigos oculares',6,bad_consequence,prize,2)
+        
+  #El gran cthulhu     
+  prize = Prize.new(2, 5)
+  bad_consequence = BadConsequence.new_death('Hoy no es tu dia de suerte. Mueres',true)
+  @unused_monsters << Monster.new('El gran Cthulhu', 20, bad_consequence, prize,4)
+        
+  #Serpiente Político
+  bc = BadConsequence.new_level_number_of_treasures('Tu gobierno te recorta 2 niveles',2 , 0, 0)
+  prize = Prize.new(2,1);
+  @unusedMonsters << Monster.new('Serpiente Político',8,bad_consequence,prize,-2)
+        
+  #Felpuggoth
+  bc = BadConsequence.new_level_specific_treasures('Pierdes tu casco y tu armadura visible.Pierdes tus manos ocultas',0,[TreasureKind::HELMET,TreasureKind::ARMOR],[TreasureKind::BOTHHANDS])
+  prize = Prize.new(1,1);
+  @unusedMonsters << Monster.new('Felpuggoth',2,bad_consequence,prize,5)
+        
+  #Shoggoth
+  bc = BadConsequence.new_level_number_of_treasures('Pierdes 2 niveles',2 , 0, 0)
+  prize = Prize.new(4,1);
+  @unusedMonsters << Monster.new('Shoggoth',16,bad_consequence,prize,-4)
+        
+  #Lolitagooth
+  bc = BadConsequence.new_level_number_of_treasures('Pintalabios negro. Pierdes 2 niveles',2 , 0, 0)
+  prize = Prize.new(1,1);
+  @unusedMonsters << Monster.new('Lolitagooth',12,bad_consequence,prize,3)
   #EL REY ROSA
   prize = Prize.new(4,2) 
   bad_consequence = BadConsequence.new_level_number_of_treasures('Pierdes 5 niveles y 3 tesoros visibles',5 , 3, 0)
@@ -196,8 +230,41 @@ end
     shuffle_monsters()
   
  end
-  #PRIVADO
-  #Baraja el mazo de los TESOROS
+  def shuffle_cultists()
+    random= Random.new
+    for i in 0..@unused_cultists.length-1
+      aux = @unused_cultists.at(i)
+      rnd = random.rand(@unused_treasures.length)
+      @unused_treasures[i] = @unused_treasures[rnd]
+      @unused_treasures[rnd] = aux
+    end
+               
+  end
+  
+  def init_cultist_card_deck()
+    @unused_cultists = Array.new
+    
+    c = Cultist.new('Sectario1', 1)
+    @unused_cultists << c
+        
+    c = Cultist.new('Sectario2', 2)
+    @unused_cultists << c
+    
+     c = Cultist.new('Sectario3', 1)
+    @unused_cultists << c
+    
+     c = Cultist.new('Sectario4', 2)
+    @unused_cultists << c
+    
+     c = Cultist.new('Sectario5', 1)
+    @unused_cultists << c
+    
+     c = Cultist.new('Sectario6', 1)
+    @unused_cultists << c
+        
+    shuffle_cultists()
+  end
+  
   def shuffle_treasures()
     random = Random.new
     for i in 0..@unused_treasures.length-1
@@ -264,8 +331,10 @@ end
     return m
   end
   
-  #PUBLICO
-  #Mete el tesoro t en la BARAJA de TESOROS USADOS
+  def next_cultist()
+    
+  end
+  
   def give_treasure_back(t)
     @used_treasures << t
   end

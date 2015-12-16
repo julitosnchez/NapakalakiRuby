@@ -8,11 +8,13 @@ module Napakalaki
   
   class Monster
     attr_accessor :name,:combat_level,:prize,:bad_consequence
-    def initialize(name,level,bc,price)
+    @level_change_against_cultist_player = 0
+    def initialize(name,level,bc,price, lc)
       @name = name
       @combat_level = level
       @prize = price
       @bad_consequence = bc
+      @level_change_against_cultist_player = lc
     end
     
     #Método to_s
