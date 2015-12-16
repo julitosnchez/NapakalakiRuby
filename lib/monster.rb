@@ -38,6 +38,10 @@ module Napakalaki
     def get_treasures_gained()
       @prize.get_treasures()
     end
+    
+    def get_combat_level_against_cultist_player()
+      return @combat_level+@level_change_against_cultist_player
+    end
   
   end
 end

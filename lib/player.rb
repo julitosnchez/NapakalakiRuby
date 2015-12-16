@@ -41,9 +41,19 @@ class Player
     
   end
   
+ #PROTECTED
   def get_combat_level()
-    
+    comb_lev = 0
+    @visible_treasures.each { |iter|  
+      comb_lev = comb_lev + iter.get_bonus()
+    }
+    comb_lev = comb_lev + @level
+    if comb_lev > @@MAX_LEVEL
+      comb_lev = @@MAX_LEVEL
+    end
+    return comb_lev
   end
+  
   public
   def get_name()
     @name
@@ -208,19 +218,6 @@ class Player
   private
   def bring_to_life()
     @dead = false
-  end
-  
-  #PRIVATE
-  def get_combat_level()
-    comb_lev = 0
-    @visible_treasures.each { |iter|  
-      comb_lev = comb_lev + iter.get_bonus()
-    }
-    comb_lev = comb_lev + @level
-    if comb_lev > @@MAX_LEVEL
-      comb_lev = @@MAX_LEVEL
-    end
-    return comb_lev
   end
   
   #PRIVATE

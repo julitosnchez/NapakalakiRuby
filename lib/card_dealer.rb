@@ -99,37 +99,37 @@ end
   #EL MAL INDECIBLE IMPRONUNCIABLE
   bc = BadConsequence.new_level_specific_treasures('Pierdes 1 mano visible',0,[TreasureKind.ONEHAND],[])
   prize = Prize.new(3,1);
-  @unusedMonsters << Monster.new('El mal indecible impronunciable',10,bad_consequence,prize,-2)
+  @unusedMonsters << Monster.new('El mal indecible impronunciable',10,bc,prize,-2)
         
   #Testigos oculares
   bc = BadConsequence.new_level_specific_treasures('Pierdes tus tesoros visibles. Ja ja ja.',0,[TreasureKind::ONEHAND,TreasureKind::BOTHHANDS,TreasureKind::HELMET,TreasureKind::ARMOR,TreasureKind::SHOES],[])
   prize = Prize.new(2,1);
-  @unusedMonsters << Monster.new('Testigos oculares',6,bad_consequence,prize,2)
+  @unusedMonsters << Monster.new('Testigos oculares',6,bc,prize,2)
         
   #El gran cthulhu     
   prize = Prize.new(2, 5)
-  bad_consequence = BadConsequence.new_death('Hoy no es tu dia de suerte. Mueres',true)
-  @unused_monsters << Monster.new('El gran Cthulhu', 20, bad_consequence, prize,4)
+  bc = BadConsequence.new_death('Hoy no es tu dia de suerte. Mueres',true)
+  @unused_monsters << Monster.new('El gran Cthulhu', 20, bc, prize,4)
         
   #Serpiente Político
   bc = BadConsequence.new_level_number_of_treasures('Tu gobierno te recorta 2 niveles',2 , 0, 0)
   prize = Prize.new(2,1);
-  @unusedMonsters << Monster.new('Serpiente Político',8,bad_consequence,prize,-2)
+  @unusedMonsters << Monster.new('Serpiente Político',8,bc,prize,-2)
         
   #Felpuggoth
   bc = BadConsequence.new_level_specific_treasures('Pierdes tu casco y tu armadura visible.Pierdes tus manos ocultas',0,[TreasureKind::HELMET,TreasureKind::ARMOR],[TreasureKind::BOTHHANDS])
   prize = Prize.new(1,1);
-  @unusedMonsters << Monster.new('Felpuggoth',2,bad_consequence,prize,5)
+  @unusedMonsters << Monster.new('Felpuggoth',2,bc,prize,5)
         
   #Shoggoth
   bc = BadConsequence.new_level_number_of_treasures('Pierdes 2 niveles',2 , 0, 0)
   prize = Prize.new(4,1);
-  @unusedMonsters << Monster.new('Shoggoth',16,bad_consequence,prize,-4)
+  @unusedMonsters << Monster.new('Shoggoth',16,bc,prize,-4)
         
   #Lolitagooth
   bc = BadConsequence.new_level_number_of_treasures('Pintalabios negro. Pierdes 2 niveles',2 , 0, 0)
   prize = Prize.new(1,1);
-  @unusedMonsters << Monster.new('Lolitagooth',12,bad_consequence,prize,3)
+  @unusedMonsters << Monster.new('Lolitagooth',12,bc,prize,3)
   #EL REY ROSA
   prize = Prize.new(4,2) 
   bad_consequence = BadConsequence.new_level_number_of_treasures('Pierdes 5 niveles y 3 tesoros visibles',5 , 3, 0)
@@ -230,6 +230,8 @@ end
     shuffle_monsters()
   
  end
+ 
+  
   def shuffle_cultists()
     random= Random.new
     for i in 0..@unused_cultists.length-1
