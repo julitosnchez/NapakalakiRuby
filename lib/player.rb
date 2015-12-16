@@ -50,7 +50,7 @@ class Player
     
     if(my_level > monster_level)
       apply_prize(m)
-      if(get_combat_level() >= @@MAX_LEVEL)
+      if(@level >= @@MAX_LEVEL)
        combat_result = CombatResult::WINGNAME
       else
         combat_result = CombatResult::WIN
