@@ -14,7 +14,7 @@ class Player
   @@MAX_LEVEL = 10
   
   attr_reader :name,:level,:dead,:can_i_steal,:visible_treasures,:hidden_treasures,:enemy
-  protected @enemy
+
   def initialize(name)
     @name = name
     @level = 1
@@ -31,6 +31,7 @@ class Player
     @can_i_steal = p.can_i_steal()
     @visible_treasures = p.get_visible_treasures()
     @hidden_treasures = p.get_hidden_treasures()
+    @enemy = p.
   end
   
   protected
@@ -38,8 +39,13 @@ class Player
     return m.get_combat_level()
   end
   
+  def enemy()
+    return @enemy
+  end
+  
   def should_convert()
-    
+    dice = Dice.instance
+    return dice.next_number == 1
   end
   
  #PROTECTED
@@ -62,6 +68,10 @@ class Player
   
   def get_level()
     @level
+  end
+  
+  def get_enemy()
+    @enemy
   end
   
   def self.MAX_LEVEL()
